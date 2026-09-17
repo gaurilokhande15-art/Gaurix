@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+
 
     /* =========================
        FARMER DASHBOARD
@@ -61,14 +61,17 @@ document.addEventListener("DOMContentLoaded", function () {
     ) || [];
 
 
-products.push(product);
+         products.push(product);
 
-
+// Save updated products
 localStorage.setItem(
     "farm2landProducts",
     JSON.stringify(products)
 );
 
+alert("Product added successfully!");
+
+window.location.href = "product-listing.html";
 
             alert("Product added successfully!");
 
@@ -79,34 +82,31 @@ localStorage.setItem(
     }
 
 
-    /* =========================
-       PRODUCT LISTING
-    ========================= */
+/* =========================
+   PRODUCT LISTING
+========================= */
 
-    const productContainer =
-        document.getElementById("productContainer");
+const productContainer =
+    document.getElementById("productContainer");
 
+if (productContainer) {
 
-    if (productContainer) {
+    const savedProducts =
+        JSON.parse(
+            localStorage.getItem("farm2landProducts")
+        ) || [];
 
-        const savedProduct =
-            localStorage.getItem("farm2landProduct");
+    if (savedProducts.length > 0) {
 
-
-        if (savedProduct) {
-
-            const product =
-                JSON.parse(savedProduct);
-
-
-            productContainer.innerHTML = `
+        productContainer.innerHTML =
+            savedProducts.map((product, index) => `
 
                 <div class="product-card">
 
                     <h2>${product.name}</h2>
 
                     <p>
-                        <strong>Quantity:</strong>
+                        <strong>Available:</strong>
                         ${product.quantity} kg
                     </p>
 
@@ -131,88 +131,16 @@ localStorage.setItem(
                     </p>
 
                     <button
-    type="button"
-    onclick="window.location.href='product-details.html'">
+                        type="button"
+                        onclick="viewProduct(${index})">
 
-    View Details
+                        View Details
 
-</button>
-                    
-    
+                    </button>
 
                 </div>
 
-            `;
-
-        } else {
-
-            productContainer.innerHTML = `
-                <p>No products available yet.</p>
-            `;
-
-        }
-
-    }
-
-});
-/* =========================
-   PRODUCT LISTING
-========================= */
-
-const productContainer =
-    document.getElementById("productContainer");
-
-if (productContainer) {
-
-    const savedProduct =
-        localStorage.getItem("farm2landProduct");
-
-    if (savedProduct) {
-
-        const product =
-            JSON.parse(savedProduct);
-
-        productContainer.innerHTML = `
-
-            <div class="product-card">
-
-                <h2>${product.name}</h2>
-
-                <p>
-                    <strong>Available:</strong>
-                    ${product.quantity} kg
-                </p>
-
-                <p>
-                    <strong>Price:</strong>
-                    ₹${product.price} / kg
-                </p>
-
-                <p>
-                    <strong>Location:</strong>
-                    ${product.location}
-                </p>
-
-                <p>
-                    <strong>Quality:</strong>
-                    ${product.quality}
-                </p>
-
-                <p>
-                    <strong>Description:</strong>
-                    ${product.description}
-                </p>
-
-                <button
-    type="button"
-    onclick="window.location.href='product-details.html'">
-
-    View Details
-
-</button>
-            </div>
-
-        `;
+            `).join("");
 
     } else {
 
@@ -223,210 +151,37 @@ if (productContainer) {
     }
 
 }
+function viewProduct(index) {
 
+    const products =
+        JSON.parse(
+            localStorage.getItem("farm2landProducts")
+        ) || [];
 
-   function requestOrder() {
+    if (!products[index]) {
 
-    const savedProduct =
-        localStorage.getItem("farm2landProduct");
-
-    if (!savedProduct) {
-
-        alert("Product information not found.");
+        alert("Product not found.");
         return;
 
     }
 
-    const product = JSON.parse(savedProduct);
-
-
-    const requiredQuantity =
-        document.getElementById("requiredQuantity").value;
-
-
-    if (
-        requiredQuantity === "" ||
-        Number(requiredQuantity) <= 0
-    ) {
-
-        alert("Please enter a valid quantity.");
-        return;
-
-    }
-
-
-    if (
-        Number(requiredQuantity) >
-        Number(product.quantity)
-    ) {
-
-        alert(
-            "Required quantity cannot be greater than available quantity!"
-        );
-
-        return;
-
-    }
-
-
-    const orderRequest = {
-
-        productName: product.name,
-
-        // Shopkeeper requested quantity
-        quantity: requiredQuantity,
-
-        price: product.price,
-
-        location: product.location,
-
-        quality: product.quality,
-
-        description: product.description,
-
-        status: "Pending"
-
+    // Save selected product with its original index
+    const selectedProduct = {
+        ...products[index],
+        productIndex: index
     };
 
-
     localStorage.setItem(
-        "farm2landOrderRequest",
-        JSON.stringify(orderRequest)
+        "farm2landProduct",
+        JSON.stringify(selectedProduct)
     );
-
-
-    alert(
-        "Order request sent to the farmer!"
-    );
-
 
     window.location.href =
-        "farmer-dashboard.html";
-
-} 
-
-    
-
-
-
-/* =========================
-   PRODUCT DETAILS
-========================= */
-
-const productDetails =
-    document.getElementById("productDetails");
-
-if (productDetails) {
-
-    const savedProduct =
-        localStorage.getItem("farm2landProduct");
-
-    if (savedProduct) {
-
-        const product =
-            JSON.parse(savedProduct);
-
-        productDetails.innerHTML = `
-
-            <div class="details-card">
-
-                <div class="details-info">
-
-                    <h1>${product.name}</h1>
-
-                    <p>
-                        <strong>Farmer:</strong>
-                        Farm2Land Farmer
-                    </p>
-
-                    <p>
-                        <strong>Location:</strong>
-                        ${product.location}
-                    </p>
-
-                    <p>
-                        <strong>Quantity Available:</strong>
-                        ${product.quantity} kg
-                    </p>
-
-                    <p>
-    <strong>Stock Status:</strong>
-
-    ${
-        Number(product.quantity) > 0
-            ? "🟢 In Stock"
-            : "🔴 Out of Stock"
-    }
-</p>
-
-
-                    <p>
-                        <strong>Price per kg:</strong>
-                        ₹${product.price}
-                    </p>
-
-                    <p>
-                        <strong>Quality Grade:</strong>
-                        ${product.quality}
-                    </p>
-
-                    <p>
-                        <strong>Description:</strong>
-                        ${product.description}
-                    </p>
-
-                    
-
-    ${Number(product.quantity) > 0
-    ? `
-
-        <label>
-            Required Quantity (kg)
-        </label>
-
-        <input
-            type="number"
-            id="requiredQuantity"
-            placeholder="Enter quantity you need"
-            min="1"
-            max="${product.quantity}"
-            oninput="calculateEstimatedOrderValue(${product.price})">
-
-        <p id="estimatedOrderValue">
-            <strong>Estimated Order Value:</strong> ₹0
-        </p>
-
-        <button
-            type="button"
-            onclick="requestOrder()">
-
-            Request Order
-
-        </button>
-
-      `
-
-    : `
-
-        <p>
-            ⚠️ This product is currently out of stock.
-        </p>
-
-      `
-}
-                    
-
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
+        "product-details.html";
 }
 /* =========================
-   FARMER ORDER REQUEST
+   FARMER MULTIPLE ORDER REQUESTS
+   STEP 12.14.4
 ========================= */
 
 const orderRequestContainer =
@@ -434,350 +189,654 @@ const orderRequestContainer =
 
 if (orderRequestContainer) {
 
-    const savedRequest =
-        localStorage.getItem("farm2landOrderRequest");
+    const orders =
+        JSON.parse(
+            localStorage.getItem("farm2landOrderRequests")
+        ) || [];
 
-    if (savedRequest) {
-
-        const order =
-            JSON.parse(savedRequest);
+    if (orders.length === 0) {
 
         orderRequestContainer.innerHTML = `
+            <p>No new order requests.</p>
+        `;
 
-    <div class="order-request-card">
+    } else {
 
-        <h3>${order.productName}</h3>
+        orderRequestContainer.innerHTML =
+            orders.map((order, index) => {
 
-        <p>
-            <strong>Quantity:</strong>
-            ${order.quantity} kg
-        </p>
+                const orderValue =
+                    Number(order.quantity) *
+                    Number(order.price);
 
-        <p>
-            <strong>Price:</strong>
-            ₹${order.price} / kg
-        </p>
+                return `
 
-        <p>
-            <strong>Order Value:</strong>
-            ₹${order.orderValue || "Pending"}
-        </p>
+                    <div class="order-request-card">
 
-        <p>
-            <strong>Status:</strong>
-            ${order.status}
-        </p>
+                        <h3>
+                            🌾 ${order.productName}
+                        </h3>
 
-        ${
-            order.status === "Pending"
+                        <p>
+                            <strong>Quantity:</strong>
+                            ${order.quantity} kg
+                        </p>
 
-            ? `
+                        <p>
+                            <strong>Price:</strong>
+                            ₹${order.price} / kg
+                        </p>
 
-            <div class="order-buttons">
+                        <p>
+                            <strong>Order Value:</strong>
+                            ₹${order.orderValue || orderValue}
+                        </p>
 
-                <button onclick="acceptOrder()">
-                    Accept
-                </button>
+                        <p>
+                            <strong>Location:</strong>
+                            ${order.location}
+                        </p>
 
-                <button onclick="rejectOrder()">
-                    Reject
-                </button>
+                        <p>
+                            <strong>Quality:</strong>
+                            ${order.quality}
+                        </p>
 
-            </div>
+                        <p>
+                            <strong>Status:</strong>
+                            ${order.status}
+                        </p>
 
-            `
 
-            : `
+                        ${
+                            order.status === "Pending"
 
-            <div class="confirmed-order">
+                            ? `
 
-                <h4>✅ Order Confirmed</h4>
+                                <div class="order-buttons">
 
-                <p>
-                    <strong>Order Value:</strong>
-                    ₹${order.orderValue}
-                </p>
+                                    <button
+                                        onclick="acceptMultipleOrder(${index})">
 
-                <p>
-                    <strong>CROPLAND Commission:</strong>
-                    ${order.commissionRate}%
-                </p>
+                                        Accept
 
-                <p>
-                    <strong>CROPLAND Revenue:</strong>
-                    ₹${order.commission.toFixed(2)}
-                </p>
+                                    </button>
 
-                <p>
-                    <strong>Farmer Amount:</strong>
-                    ₹${order.farmerAmount.toFixed(2)}
-                </p>
+                                    <button
+                                        onclick="rejectMultipleOrder(${index})">
 
-                <button onclick="readyForDelivery()">
-    Ready for Delivery 🚚
-</button>
-            </div>
+                                        Reject
 
-             `
-        }
+                                    </button>
 
-    </div>
+                                </div>
 
-`;
+                            `
 
-                
+                            : ""
 
+                        }
+
+
+                        ${
+                            order.status === "Accepted"
+
+                            ? `
+
+                                <div class="confirmed-order">
+
+                                    <h4>
+                                        ✅ Order Accepted
+                                    </h4>
+
+                                    <p>
+                                        <strong>
+                                            Order Value:
+                                        </strong>
+
+                                        ₹${order.orderValue}
+                                    </p>
+
+                                    <p>
+                                        <strong>
+                                            CROPLAND Commission:
+                                        </strong>
+
+                                        ${order.commissionRate}%
+                                    </p>
+
+                                    <p>
+                                        <strong>
+                                            CROPLAND Revenue:
+                                        </strong>
+
+                                        ₹${Number(
+                                            order.commission
+                                        ).toFixed(2)}
+                                    </p>
+
+                                    <p>
+                                        <strong>
+                                            Farmer Amount:
+                                        </strong>
+
+                                        ₹${Number(
+                                            order.farmerAmount
+                                        ).toFixed(2)}
+                                    </p>
+
+                                    <button
+                                        onclick="readyForDeliveryMultipleOrder(${index})">
+
+                                        Ready for Delivery 🚚
+
+                                    </button>
+
+                                </div>
+
+                            `
+
+                            : ""
+
+                        }
+
+
+                        ${
+                            order.status === "Rejected"
+
+                            ? `
+
+                                <div class="rejected-summary">
+
+                                    <h4>
+                                        ❌ Order Rejected
+                                    </h4>
+
+                                    <p>
+                                        This order request was rejected.
+                                    </p>
+
+                                </div>
+
+                            `
+
+                            : ""
+
+                        }
+
+
+                        ${
+                            order.status === "Ready for Delivery"
+
+                            ? `
+
+                                <div class="confirmed-order">
+
+                                    <h4>
+                                        🚚 Ready for Delivery
+                                    </h4>
+
+                                    <p>
+                                        Order accepted and ready
+                                        for delivery.
+                                    </p>
+
+                                </div>
+
+                            `
+
+                            : ""
+
+                        }
+
+                    </div>
+
+                `;
+
+            }).join("");
 
     }
 
 }
-function acceptOrder() {
 
-    const savedRequest =
-        localStorage.getItem("farm2landOrderRequest");
 
-    if (!savedRequest) {
+/* =========================
+   ACCEPT MULTIPLE ORDER
+========================= */
+
+function acceptMultipleOrder(index) {
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("farm2landOrderRequests")
+        ) || [];
+
+    if (!orders[index]) {
+
         alert("Order information not found.");
+
         return;
+
     }
 
-    const order = JSON.parse(savedRequest);
+    const order = orders[index];
 
-    // Calculate total order value
-    const quantity = Number(order.quantity);
-    const price = Number(order.price);
+    const quantity =
+        Number(order.quantity);
 
-    const orderValue = quantity * price;
+    const price =
+        Number(order.price);
 
-    // Calculate CROPLAND commission
+    const orderValue =
+        quantity * price;
+
+
+    /* =========================
+       COMMISSION
+    ========================= */
+
     let commissionRate;
 
     if (orderValue < 10000) {
 
-        commissionRate = 0.015;       // 1.5%
+        commissionRate = 1.5;
 
     } else if (orderValue <= 20000) {
 
-        commissionRate = 0.03;        // 3%
+        commissionRate = 3;
 
     } else {
 
-        commissionRate = 0.05;        // 5%
+        commissionRate = 5;
 
     }
 
+
     const commission =
-        orderValue * commissionRate;
+        orderValue * (commissionRate / 100);
 
     const farmerAmount =
         orderValue - commission;
 
-        // Update available product quantity
 
-const savedProduct =
-    localStorage.getItem("farm2landProduct");
+    /* =========================
+       UPDATE PRODUCT STOCK
+    ========================= */
 
-if (savedProduct) {
-
-    const product =
-        JSON.parse(savedProduct);
-
-    const availableQuantity =
-        Number(product.quantity);
-
-    const orderedQuantity =
-        Number(order.quantity);
-
-    product.quantity =
-        availableQuantity - orderedQuantity;
+    let products =
+        JSON.parse(
+            localStorage.getItem("farm2landProducts")
+        ) || [];
 
 
-    localStorage.setItem(
-        "farm2landProduct",
-        JSON.stringify(product)
-    );
-
-}
+    const productIndex =
+        order.productIndex;
 
 
-    // Save calculated values
-    order.status = "Accepted";
+    if (
+        productIndex !== undefined &&
+        products[productIndex]
+    ) {
 
-    order.orderValue = orderValue;
+        const availableQuantity =
+            Number(
+                products[productIndex].quantity
+            );
 
-    order.commissionRate =
-        commissionRate * 100;
+        if (quantity > availableQuantity) {
 
-    order.commission = commission;
+            alert(
+                "Order quantity is greater than current stock."
+            );
 
-    order.farmerAmount = farmerAmount;
+            return;
 
-
-    localStorage.setItem(
-        "farm2landOrderRequest",
-        JSON.stringify(order)
-    );
-
-
-    alert("Order accepted successfully!");
-
-    location.reload();
-
-}
+        }
 
 
-function rejectOrder() {
+        products[productIndex].quantity =
+            availableQuantity - quantity;
 
-    const savedRequest =
-        localStorage.getItem("farm2landOrderRequest");
 
-    if (!savedRequest) {
-        return;
+        localStorage.setItem(
+            "farm2landProducts",
+            JSON.stringify(products)
+        );
+
     }
 
-    const order = JSON.parse(savedRequest);
 
-    order.status = "Rejected";
+    /* =========================
+       UPDATE ORDER
+    ========================= */
+
+    order.status = "Accepted";
+
+    order.orderValue =
+        orderValue;
+
+    order.commissionRate =
+        commissionRate;
+
+    order.commission =
+        commission;
+
+    order.farmerAmount =
+        farmerAmount;
+
+
+    orders[index] =
+        order;
+
 
     localStorage.setItem(
-        "farm2landOrderRequest",
-        JSON.stringify(order)
+        "farm2landOrderRequests",
+        JSON.stringify(orders)
     );
 
-    alert("Order request rejected.");
+
+    alert(
+        "Order accepted successfully! ✅"
+    );
+
 
     location.reload();
+
 }
+
+
+/* =========================
+   REJECT MULTIPLE ORDER
+========================= */
+
+function rejectMultipleOrder(index) {
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("farm2landOrderRequests")
+        ) || [];
+
+
+    if (!orders[index]) {
+
+        alert("Order information not found.");
+
+        return;
+
+    }
+
+
+    orders[index].status =
+        "Rejected";
+
+
+    localStorage.setItem(
+        "farm2landOrderRequests",
+        JSON.stringify(orders)
+    );
+
+
+    alert(
+        "Order request rejected."
+    );
+
+
+    location.reload();
+
+}
+
+
+/* =========================
+   READY FOR DELIVERY
+========================= */
+
+function readyForDeliveryMultipleOrder(index) {
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("farm2landOrderRequests")
+        ) || [];
+
+
+    if (!orders[index]) {
+
+        alert("Order information not found.");
+
+        return;
+
+    }
+
+
+    orders[index].status =
+        "Ready for Delivery";
+
+
+    localStorage.setItem(
+        "farm2landOrderRequests",
+        JSON.stringify(orders)
+    );
+
+
+    alert(
+        "Order is ready for delivery! 🚚"
+    );
+
+
+    location.reload();
+
+}
+/* =========================
+   SHOPKEEPER MY ORDERS
+========================= */
 
 /* =========================
    SHOPKEEPER MY ORDERS
+   STEP 12.14.5
 ========================= */
 
 const myOrdersContainer =
     document.getElementById("myOrdersContainer");
 
-
 if (myOrdersContainer) {
 
-    const savedOrder =
-        localStorage.getItem("farm2landOrderRequest");
+    // Get all orders
+    const orders =
+        JSON.parse(
+            localStorage.getItem("farm2landOrderRequests")
+        ) || [];
+
+    if (orders.length > 0) {
+
+        myOrdersContainer.innerHTML =
+            orders.map(order => `
+
+                <div class="my-order-card">
+
+                    <h2>${order.productName}</h2>
+
+                    <p>
+                        <strong>Quantity:</strong>
+                        ${order.quantity} kg
+                    </p>
+
+                    <p>
+                        <strong>Price:</strong>
+                        ₹${order.price} / kg
+                    </p>
+
+                    <p>
+                        <strong>Order Value:</strong>
+                        ₹${
+                            order.orderValue ||
+                            (order.quantity * order.price)
+                        }
+                    </p>
+
+                    <p>
+                        <strong>Location:</strong>
+                        ${order.location}
+                    </p>
+
+                    <p>
+                        <strong>Quality:</strong>
+                        ${order.quality}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        ${order.status}
+                    </p>
 
 
-    if (savedOrder) {
+                    <!-- REJECTED ORDER -->
 
-        const order =
-            JSON.parse(savedOrder);
+                    ${
+                        order.status === "Rejected"
+                        ? `
 
+                            <div class="rejected-summary">
+
+                                <h3>
+                                    ❌ Order Rejected
+                                </h3>
+
+                                <p>
+                                    The farmer is unable
+                                    to accept this order.
+                                </p>
+
+                                <p>
+                                    Please browse other
+                                    available products.
+                                </p>
+
+                            </div>
+
+                          `
+                        : ""
+                    }
+
+
+                    <!-- READY FOR DELIVERY -->
+
+                    ${
+                        order.status === "Ready for Delivery"
+                        ? `
+
+                            <button
+                                onclick="markMultipleOrderAsDelivered(${order.id})">
+
+                                Mark as Delivered ✅
+
+                            </button>
+
+                          `
+                        : ""
+                    }
+
+
+                    <!-- DELIVERED ORDER -->
+
+                    ${
+                        order.status === "Delivered"
+                        ? `
+
+                            <div class="delivered-summary">
+
+                                <h3>
+                                    📦 Order Delivered Successfully! ✅
+                                </h3>
+
+                                <p>
+                                    Your order has been
+                                    successfully delivered.
+                                </p>
+
+                                <p>
+                                    <strong>
+                                        Order Value:
+                                    </strong>
+
+                                    ₹${order.orderValue}
+                                </p>
+
+                            </div>
+
+                          `
+                        : ""
+                    }
+
+                </div>
+
+            `).join("");
+
+    } else {
 
         myOrdersContainer.innerHTML = `
-
-            <div class="my-order-card">
-
-                <h2>${order.productName}</h2>
-
-                <p>
-                    <strong>Quantity:</strong>
-                    ${order.quantity} kg
-                </p>
-
-                <p>
-                    <strong>Price:</strong>
-                    ₹${order.price} / kg
-                </p>
-
-                <p>
-                    <strong>Order Value:</strong>
-                    ₹${order.orderValue || 
-                    (order.quantity * order.price)}
-                </p>
-
-                <p>
-    <strong>Status:</strong>
-    ${order.status}
-</p>
-
-${order.status === "Rejected"
-    ? `
-        <div class="rejected-summary">
-
-            <h3>❌ Order Rejected</h3>
-
-            <p>
-                The farmer is unable to accept this order.
-            </p>
-
-            <p>
-                Please browse other available products.
-            </p>
-
-        </div>
-      `
-    : ""
-}
-
-
-${order.status === "Ready for Delivery"
-    ? `
-        <button onclick="markAsDelivered()">
-            Mark as Delivered ✅
-        </button>
-      `
-    : ""
-}
-
-
-${order.status === "Delivered"
-    ? `
-
-        <div class="delivered-summary">
-
-            <h3>📦 Order Delivered Successfully! ✅</h3>
-
-            <p>
-                Your order has been successfully delivered.
-            </p>
-
-            <p>
-                <strong>Order Value:</strong>
-                ₹${order.orderValue}
-            </p>
-
-        </div>
-
-      `
-    : ""
-}  
-            
-
-            </div>
-
+            <p>No orders placed yet.</p>
         `;
 
     }
 
 }
 
-function readyForDelivery() {
 
-    const savedRequest =
-        localStorage.getItem("farm2landOrderRequest");
+/* =========================
+   MARK MULTIPLE ORDER
+   AS DELIVERED
+========================= */
 
-    if (!savedRequest) {
+function markMultipleOrderAsDelivered(orderId) {
+
+    // Get all orders
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem("farm2landOrderRequests")
+        ) || [];
+
+
+    // Find selected order
+
+    const orderIndex =
+        orders.findIndex(
+            order => order.id === orderId
+        );
+
+
+    if (orderIndex === -1) {
+
+        alert("Order information not found.");
+
         return;
+
     }
 
-    const order = JSON.parse(savedRequest);
 
-    order.status = "Ready for Delivery";
+    // Update only selected order
+
+    orders[orderIndex].status =
+        "Delivered";
+
+
+    // Save updated orders
 
     localStorage.setItem(
-        "farm2landOrderRequest",
-        JSON.stringify(order)
+
+        "farm2landOrderRequests",
+
+        JSON.stringify(orders)
+
     );
 
-    alert("Order is ready for delivery!");
+
+    alert(
+        "Order marked as delivered successfully! "
+    );
+
 
     location.reload();
+
 }
 
 /* =========================
@@ -850,4 +909,244 @@ function calculateEstimatedOrderValue(price) {
         <strong>Estimated Order Value:</strong>
         ₹${estimatedValue}
     `;
+}
+
+/* =========================
+   MULTIPLE ORDER REQUESTS
+   STEP 12.14.3
+========================= */
+
+const productDetailsContainer =
+    document.getElementById("productDetails");
+
+if (productDetailsContainer) {
+
+    const selectedProduct =
+        JSON.parse(
+            localStorage.getItem("farm2landProduct")
+        );
+
+    if (selectedProduct) {
+
+        productDetailsContainer.innerHTML = `
+
+            <div class="product-details-card">
+
+                <h1>${selectedProduct.name}</h1>
+
+                <p>
+                    <strong>Available Quantity:</strong>
+                    ${selectedProduct.quantity} kg
+                </p>
+
+                <p>
+                    <strong>Price:</strong>
+                    ₹${selectedProduct.price} / kg
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    ${selectedProduct.location}
+                </p>
+
+                <p>
+                    <strong>Quality:</strong>
+                    ${selectedProduct.quality}
+                </p>
+
+                <p>
+                    <strong>Description:</strong>
+                    ${selectedProduct.description}
+                </p>
+
+                <label>
+                    Required Quantity (kg)
+                </label>
+
+                <input
+                    type="number"
+                    id="requiredQuantity"
+                    min="1"
+                    max="${selectedProduct.quantity}"
+                    placeholder="Enter quantity"
+                >
+
+                <p id="estimatedOrderValue">
+                    <strong>Estimated Order Value:</strong>
+                    ₹0
+                </p>
+
+                <button
+                    type="button"
+                    onclick="requestMultipleOrder()">
+
+                    Request Order
+
+                </button>
+
+            </div>
+
+        `;
+
+        const quantityInput =
+            document.getElementById("requiredQuantity");
+
+        quantityInput.addEventListener(
+            "input",
+            function () {
+
+                const quantity =
+                    Number(this.value);
+
+                const price =
+                    Number(selectedProduct.price);
+
+                const estimatedValue =
+                    quantity * price;
+
+                document.getElementById(
+                    "estimatedOrderValue"
+                ).innerHTML = `
+
+                    <strong>
+                        Estimated Order Value:
+                    </strong>
+
+                    ₹${estimatedValue}
+
+                `;
+
+            }
+        );
+
+    } else {
+
+        productDetailsContainer.innerHTML = `
+            <p>Product information not found.</p>
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   CREATE MULTIPLE ORDER
+========================= */
+
+function requestMultipleOrder() {
+
+    const selectedProduct =
+        JSON.parse(
+            localStorage.getItem("farm2landProduct")
+        );
+
+    if (!selectedProduct) {
+
+        alert("Product information not found.");
+
+        return;
+
+    }
+
+    const quantityInput =
+        document.getElementById("requiredQuantity");
+
+    const quantity =
+        Number(quantityInput.value);
+
+    const availableQuantity =
+        Number(selectedProduct.quantity);
+
+    if (!quantity || quantity <= 0) {
+
+        alert("Please enter required quantity.");
+
+        return;
+
+    }
+
+    if (quantity > availableQuantity) {
+
+        alert(
+            "Required quantity is greater than available stock."
+        );
+
+        return;
+
+    }
+const order = {
+
+    id: Date.now(),
+
+    productIndex:
+        selectedProduct.productIndex,
+
+    productName:
+        selectedProduct.name,
+
+    price:
+        Number(selectedProduct.price),
+
+    quantity:
+        quantity,
+
+    location:
+        selectedProduct.location,
+
+    quality:
+        selectedProduct.quality,
+
+    status:
+        "Pending",
+
+    orderValue:
+        null,
+
+    commissionRate:
+        null,
+
+    commission:
+        null,
+
+    farmerAmount:
+        null
+
+};
+    
+
+    /* Get existing orders */
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem(
+                "farm2landOrderRequests"
+            )
+        ) || [];
+
+
+    /* Add new order */
+
+    orders.push(order);
+
+
+    /* Save all orders */
+
+    localStorage.setItem(
+
+        "farm2landOrderRequests",
+
+        JSON.stringify(orders)
+
+    );
+
+
+    alert(
+        "Order request sent successfully! ✅"
+    );
+
+
+    window.location.href =
+        "my-orders.html";
+
 }
