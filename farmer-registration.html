@@ -36,11 +36,12 @@
         <p>Create your CropLand farmer account</p>
 
 
-        <form class="registration-form">
+        <form class="registration-form" id="farmerRegistrationForm">
 
             <label>Full Name</label>
 
             <input type="text"
+            id="farmerFullName"
                    placeholder="Enter your full name"
                    required>
 
@@ -48,6 +49,7 @@
             <label>Mobile Number</label>
 
             <input type="tel"
+            id="farmerPhone"
                    placeholder="Enter mobile number"
                    required>
 
@@ -55,12 +57,15 @@
             <label>Email</label>
 
             <input type="email"
-                   placeholder="Enter email address">
+            id="farmerEmail"
+                   placeholder="Enter email address"
+                   required>
 
 
             <label>Farm Location</label>
 
             <input type="text"
+            id="farmerLocation"
                    placeholder="Village, District, State"
                    required>
 
@@ -68,17 +73,19 @@
             <label>Farm Size</label>
 
             <input type="text"
+            id="farmerFarmSize"
                    placeholder="Example: 5 acres">
 
 
             <label>Password</label>
 
             <input type="password"
+            id="farmerPassword"
                    placeholder="Create a password"
                    required>
 
 
-            <button type="button" onclick="window.location.href='farmer-dashboard.html'">
+            <button type="submit">
     Create Farmer Account
 </button>
 
@@ -86,6 +93,44 @@
 
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+
+    <script>
+document.getElementById("farmerRegistrationForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const fullName = document.getElementById("farmerFullName").value.trim();
+    const phone = document.getElementById("farmerPhone").value.trim();
+    const email = document.getElementById("farmerEmail").value.trim();
+    const location = document.getElementById("farmerLocation").value.trim();
+    const farmSize = document.getElementById("farmerFarmSize").value.trim();
+    const password = document.getElementById("farmerPassword").value;
+
+    const { data, error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+            data: {
+                full_name: fullName,
+                phone: phone,
+                role: "Farmer",
+                farm_location: location,
+                farm_size: farmSize
+            }
+        }
+    });
+
+    if (error) {
+        alert("Registration failed: " + error.message);
+        return;
+    }
+
+    alert("Account created successfully! Please check your email for confirmation.");
+
+    window.location.href = "farmer-dashboard.html";
+});
+</script>
 </body>
 
 </html>
