@@ -43,13 +43,91 @@
     <main class="my-orders-page">
 
         <h1>My Orders</h1>
+        <div class="order-count-summary">
 
-        <p>
-            Track your orders placed through CROPLAND.
-        </p>
+   <div class="order-count-card order-count-clickable"
+     data-filter="All">
+    <h3>Total Orders</h3>
+    <p id="shopkeeperTotalOrders">0</p>
+</div>
 
+    <div class="order-count-card order-count-clickable"
+     data-filter="Pending">
+    <h3>Pending</h3>
+    <p id="shopkeeperPendingOrders">0</p>
+</div>
 
-        <div id="myOrdersContainer">
+    <div class="order-count-card order-count-clickable"
+     data-filter="Accepted">
+    <h3>Accepted</h3>
+    <p id="shopkeeperAcceptedOrders">0</p>
+</div>
+
+   <div class="order-count-card order-count-clickable"
+     data-filter="Rejected">
+    <h3>Rejected</h3>
+    <p id="shopkeeperRejectedOrders">0</p>
+</div> 
+
+    <div class="order-count-card order-count-clickable"
+     data-filter="Ready for Delivery">
+    <h3>Ready for Delivery</h3>
+    <p id="shopkeeperReadyOrders">0</p>
+</div>
+
+    <div class="order-count-card order-count-clickable"
+     data-filter="Delivered">
+    <h3>Delivered</h3>
+    <p id="shopkeeperDeliveredOrders">0</p>
+</div>
+
+</div>
+
+       <p>
+    Track your orders placed through CROPLAND.
+</p>
+
+<div class="order-filter">
+    <label for="shopkeeperOrderFilter">
+        Filter Orders:
+    </label>
+
+    <select id="shopkeeperOrderFilter">
+        <option value="All">All Orders</option>
+        <option value="Pending">Pending</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Rejected">Rejected</option>
+        <option value="Ready for Delivery">Ready for Delivery</option>
+        <option value="Delivered">Delivered</option>
+    </select>
+</div>
+
+<div class="order-search">
+    <label for="shopkeeperOrderSearch">
+        Search Orders:
+    </label>
+
+    <input
+        type="text"
+        id="shopkeeperOrderSearch"
+        placeholder="Search by Product Name or Order ID"
+    >
+</div>
+
+<div class="order-sort">
+    <label for="shopkeeperOrderSort">
+        Sort Orders:
+    </label>
+
+    <select id="shopkeeperOrderSort">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="highValue">Order Value: High → Low</option>
+        <option value="lowValue">Order Value: Low → High</option>
+    </select>
+</div>
+
+<div id="myOrdersContainer">
 
             <p>No orders placed yet.</p>
 

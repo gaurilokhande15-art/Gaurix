@@ -80,8 +80,85 @@
             <section class="incoming-orders">
 
     <h2>Incoming Order Requests</h2>
+    <div class="order-count-summary">
 
-    <div id="orderRequestContainer">
+    
+
+        <div class="order-count-card order-count-clickable"
+     data-filter="All">
+    <h3>Total Orders</h3>
+    <p id="farmerTotalOrders">0</p>
+</div>
+    <div class="order-count-card order-count-clickable"
+     data-filter="Pending">
+    <h3>Pending</h3>
+    <p id="farmerPendingOrders">0</p>
+</div>
+
+    <div class="order-count-card order-count-clickable"
+     data-filter="Accepted">
+    <h3>Accepted</h3>
+    <p id="farmerAcceptedOrders">0</p>
+</div>
+
+   <div class="order-count-card order-count-clickable"
+     data-filter="Rejected">
+    <h3>Rejected</h3>
+    <p id="farmerRejectedOrders">0</p>
+</div>
+
+    <div class="order-count-card order-count-clickable"
+     data-filter="Ready for Delivery">
+    <h3>Ready for Delivery</h3>
+    <p id="farmerReadyOrders">0</p>
+</div>
+
+   <div class="order-count-card order-count-clickable"
+     data-filter="Delivered">
+    <h3>Delivered</h3>
+    <p id="farmerDeliveredOrders">0</p>
+</div>
+</div>
+
+<div class="order-filter">
+    <label for="farmerOrderFilter">
+        Filter Orders:
+    </label>
+
+    <select id="farmerOrderFilter">
+        <option value="All">All Orders</option>
+        <option value="Pending">Pending</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Rejected">Rejected</option>
+        <option value="Ready for Delivery">Ready for Delivery</option>
+        <option value="Delivered">Delivered</option>
+    </select>
+</div>
+<div class="order-search">
+    <label for="farmerOrderSearch">
+        Search Orders:
+    </label>
+
+    <input
+        type="text"
+        id="farmerOrderSearch"
+        placeholder="Search by Product Name or Order ID"
+    >
+</div>
+<div class="order-sort">
+    <label for="farmerOrderSort">
+        Sort Orders:
+    </label>
+
+    <select id="farmerOrderSort">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="highValue">Order Value: High → Low</option>
+        <option value="lowValue">Order Value: Low → High</option>
+    </select>
+</div>
+
+<div id="orderRequestContainer">
 
         <p>No new order requests.</p>
 

@@ -209,43 +209,111 @@ if (orderRequestContainer) {
                     Number(order.quantity) *
                     Number(order.price);
 
+                const orderDate =
+                    order.id && !isNaN(new Date(Number(order.id)).getTime())
+                        ? new Date(Number(order.id)).toLocaleString()
+                        : "N/A";
+
+                const statusClass =
+                    (order.status || "Pending").toLowerCase().replace(/\s+/g, "-");
+
+                const financialOrderValue =
+                    order.orderValue !== null && order.orderValue !== undefined
+                        ? `₹${order.orderValue}`
+                        : "Not available yet";
+
+                const financialCommission =
+                    order.commission !== null && order.commission !== undefined
+                        ? `₹${order.commission}`
+                        : "Not available yet";
+
+                const financialCommissionRate =
+                    order.commissionRate !== null && order.commissionRate !== undefined
+                        ? `${order.commissionRate}%`
+                        : "Not available yet";
+
+                const financialFarmerAmount =
+                    order.farmerAmount !== null && order.farmerAmount !== undefined
+                        ? `₹${order.farmerAmount}`
+                        : "Not available yet";
+
                 return `
 
-                    <div class="order-request-card">
+                    <div class="order-request-card" data-status="${order.status}">
 
                         <h3>
                             🌾 ${order.productName}
                         </h3>
 
-                        <p>
-                            <strong>Quantity:</strong>
-                            ${order.quantity} kg
-                        </p>
+                        <div class="order-section">
+                            <h4>Order Information</h4>
+                            <p>
+                                <strong>Product Name:</strong>
+                                ${order.productName}
+                            </p>
+                            <p>
+                                <strong>Order ID:</strong>
+                                CL-${order.id}
+                            </p>
+                            <p>
+                                <strong>Order Date & Time:</strong>
+                                ${orderDate}
+                            </p>
+                            <p>
+                                <strong>Order Status:</strong>
+                                <span class="status-badge status-${statusClass}">
+                                    ${order.status}
+                                </span>
+                            </p>
+                        </div>
 
-                        <p>
-                            <strong>Price:</strong>
-                            ₹${order.price} / kg
-                        </p>
+                        <div class="order-section">
+                            <h4>Order Details</h4>
+                            <p>
+                                <strong>Quantity:</strong>
+                                ${order.quantity} kg
+                            </p>
+                            <p>
+                                <strong>Price per kg:</strong>
+                                ₹${order.price} / kg
+                            </p>
+                            <p>
+                                <strong>Total Order Value:</strong>
+                                ₹${order.orderValue || orderValue}
+                            </p>
+                        </div>
 
-                        <p>
-                            <strong>Order Value:</strong>
-                            ₹${order.orderValue || orderValue}
-                        </p>
+                        <div class="order-section">
+                            <h4>Delivery / Location</h4>
+                            <p>
+                                <strong>Location:</strong>
+                                ${order.location}
+                            </p>
+                            <p>
+                                <strong>Quality:</strong>
+                                ${order.quality}
+                            </p>
+                        </div>
 
-                        <p>
-                            <strong>Location:</strong>
-                            ${order.location}
-                        </p>
-
-                        <p>
-                            <strong>Quality:</strong>
-                            ${order.quality}
-                        </p>
-
-                        <p>
-                            <strong>Status:</strong>
-                            ${order.status}
-                        </p>
+                        <div class="my-order-card" data-status="${order.status}">
+                            <h4>Financial Information</h4>
+                            <p>
+                                <strong>Order Value:</strong>
+                                ${financialOrderValue}
+                            </p>
+                            <p>
+                                <strong>CROPLAND Commission:</strong>
+                                ${financialCommission}
+                            </p>
+                            <p>
+                                <strong>Commission Rate:</strong>
+                                ${financialCommissionRate}
+                            </p>
+                            <p>
+                                <strong>Farmer Net Payout:</strong>
+                                ${financialFarmerAmount}
+                            </p>
+                        </div>
 
 
                         ${
@@ -379,6 +447,47 @@ if (orderRequestContainer) {
                                     <p>
                                         Order accepted and ready
                                         for delivery.
+                                    </p>
+
+                                </div>
+
+                            `
+
+                            : ""
+
+                        }
+
+
+                        ${
+                            order.status === "Delivered"
+
+                            ? `
+
+                                <div class="delivered-summary">
+
+                                    <h3>
+                                        📦 Order Delivered Successfully! ✅
+                                    </h3>
+
+                                    <p>
+                                        <strong>
+                                            Order Value:
+                                        </strong>
+                                        ₹${order.orderValue}
+                                    </p>
+
+                                    <p>
+                                        <strong>
+                                            CROPLAND Commission Deducted:
+                                        </strong>
+                                        ₹${order.commission} (${order.commissionRate}%)
+                                    </p>
+
+                                    <p>
+                                        <strong>
+                                            Farmer Net Payout / Amount Credited:
+                                        </strong>
+                                        ₹${order.farmerAmount}
                                     </p>
 
                                 </div>
@@ -648,44 +757,115 @@ if (myOrdersContainer) {
     if (orders.length > 0) {
 
         myOrdersContainer.innerHTML =
-            orders.map(order => `
+            orders.map(order => {
 
-                <div class="my-order-card">
+                const orderValue =
+                    Number(order.quantity) *
+                    Number(order.price);
+
+                const orderDate =
+                    order.id && !isNaN(new Date(Number(order.id)).getTime())
+                        ? new Date(Number(order.id)).toLocaleString()
+                        : "N/A";
+
+                const statusClass =
+                    (order.status || "Pending").toLowerCase().replace(/\s+/g, "-");
+
+                const financialOrderValue =
+                    order.orderValue !== null && order.orderValue !== undefined
+                        ? `₹${order.orderValue}`
+                        : "Not available yet";
+
+                const financialCommission =
+                    order.commission !== null && order.commission !== undefined
+                        ? `₹${order.commission}`
+                        : "Not available yet";
+
+                const financialCommissionRate =
+                    order.commissionRate !== null && order.commissionRate !== undefined
+                        ? `${order.commissionRate}%`
+                        : "Not available yet";
+
+                const financialFarmerAmount =
+                    order.farmerAmount !== null && order.farmerAmount !== undefined
+                        ? `₹${order.farmerAmount}`
+                        : "Not available yet";
+
+                return `
+
+                <div class="my-order-card" data-status="${order.status}">
 
                     <h2>${order.productName}</h2>
 
-                    <p>
-                        <strong>Quantity:</strong>
-                        ${order.quantity} kg
-                    </p>
+                    <div class="order-section">
+                        <h4>Order Information</h4>
+                        <p>
+                            <strong>Product Name:</strong>
+                            ${order.productName}
+                        </p>
+                        <p>
+                            <strong>Order ID:</strong>
+                            CL-${order.id}
+                        </p>
+                        <p>
+                            <strong>Order Date & Time:</strong>
+                            ${orderDate}
+                        </p>
+                        <p>
+                            <strong>Order Status:</strong>
+                            <span class="status-badge status-${statusClass}">
+                                ${order.status}
+                            </span>
+                        </p>
+                    </div>
 
-                    <p>
-                        <strong>Price:</strong>
-                        ₹${order.price} / kg
-                    </p>
+                    <div class="order-section">
+                        <h4>Order Details</h4>
+                        <p>
+                            <strong>Quantity:</strong>
+                            ${order.quantity} kg
+                        </p>
+                        <p>
+                            <strong>Price per kg:</strong>
+                            ₹${order.price} / kg
+                        </p>
+                        <p>
+                            <strong>Total Order Value:</strong>
+                            ₹${order.orderValue || orderValue}
+                        </p>
+                    </div>
 
-                    <p>
-                        <strong>Order Value:</strong>
-                        ₹${
-                            order.orderValue ||
-                            (order.quantity * order.price)
-                        }
-                    </p>
+                    <div class="order-section">
+                        <h4>Delivery / Location</h4>
+                        <p>
+                            <strong>Location:</strong>
+                            ${order.location}
+                        </p>
+                        <p>
+                            <strong>Quality:</strong>
+                            ${order.quality}
+                        </p>
+                    </div>
 
-                    <p>
-                        <strong>Location:</strong>
-                        ${order.location}
-                    </p>
-
-                    <p>
-                        <strong>Quality:</strong>
-                        ${order.quality}
-                    </p>
-
-                    <p>
-                        <strong>Status:</strong>
-                        ${order.status}
-                    </p>
+                    <div class="order-section">
+                        <h4>Financial Information</h4>
+                        <p>
+                            <strong>Order Value:</strong>
+                            ${financialOrderValue}
+                        </p>
+                        <p>
+                            <strong>CROPLAND Commission:</strong>
+                            ${financialCommission}
+                        </p>
+                        <p>
+                            <strong>Commission Rate:</strong>
+                            ${financialCommissionRate}
+                        </p>
+                        <p>
+                            <strong>Farmer Net Payout:</strong>
+                            ${financialFarmerAmount}
+                        </p>
+                    </div>
 
 
                     <!-- REJECTED ORDER -->
@@ -768,7 +948,9 @@ if (myOrdersContainer) {
 
                 </div>
 
-            `).join("");
+            `;
+
+        }).join("");
 
     } else {
 
@@ -1150,3 +1332,621 @@ const order = {
         "my-orders.html";
 
 }
+// ========================================
+// ORDER STATUS FILTER - 12.14.11
+// ========================================
+
+function applyOrderFilter(filterId, containerId) {
+    const filter = document.getElementById(filterId);
+    const container = document.getElementById(containerId);
+
+    if (!filter || !container) return;
+
+    filter.addEventListener("change", function () {
+
+        const selectedStatus = this.value;
+        const cards = container.querySelectorAll("[data-status]");
+
+        if (cards.length === 0) return;
+
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+
+            const cardStatus = card.dataset.status;
+
+            if (selectedStatus === "All" || cardStatus === selectedStatus) {
+                card.style.display = "";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+
+        let noResultsMessage =
+            container.querySelector(".no-filter-results");
+
+        if (visibleCount === 0) {
+
+            if (!noResultsMessage) {
+
+                noResultsMessage = document.createElement("p");
+
+                noResultsMessage.className = "no-filter-results";
+
+                noResultsMessage.textContent =
+                    "No orders found for this status.";
+
+                container.appendChild(noResultsMessage);
+            }
+
+        } else {
+
+            if (noResultsMessage) {
+                noResultsMessage.remove();
+            }
+
+        }
+
+    });
+}
+
+
+// Farmer Dashboard Filter
+applyOrderFilter(
+    "farmerOrderFilter",
+    "orderRequestContainer"
+);
+
+
+// Shopkeeper My Orders Filter
+applyOrderFilter(
+    "shopkeeperOrderFilter",
+    "myOrdersContainer"
+);
+
+
+
+// ========================================
+// ORDER SEARCH - 12.14.12
+// ========================================
+
+function applyOrderSearch(searchId, containerId) {
+
+    const searchInput = document.getElementById(searchId);
+    const container = document.getElementById(containerId);
+
+    if (!searchInput || !container) return;
+
+    searchInput.addEventListener("input", function () {
+
+        const searchText = this.value.toLowerCase().trim();
+
+        const cards = container.querySelectorAll("[data-status]");
+
+        if (cards.length === 0) return;
+
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+
+            const productName =
+                card.querySelector("h2")?.textContent.toLowerCase() || "";
+
+            const cardText =
+                card.textContent.toLowerCase();
+
+            const orderIdMatch =
+                cardText.includes(searchText);
+
+            const productMatch =
+                productName.includes(searchText);
+
+            if (
+                searchText === "" ||
+                productMatch ||
+                orderIdMatch
+            ) {
+                card.style.display = "";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+
+        let noResultsMessage =
+            container.querySelector(".no-search-results");
+
+        if (visibleCount === 0) {
+
+            if (!noResultsMessage) {
+
+                noResultsMessage = document.createElement("p");
+
+                noResultsMessage.className =
+                    "no-search-results";
+
+                noResultsMessage.textContent =
+                    "No orders found.";
+
+                container.appendChild(noResultsMessage);
+            }
+
+        } else {
+
+            if (noResultsMessage) {
+                noResultsMessage.remove();
+            }
+
+        }
+
+    });
+}
+
+
+// Farmer Dashboard Search
+applyOrderSearch(
+    "farmerOrderSearch",
+    "orderRequestContainer"
+);
+
+
+// Shopkeeper My Orders Search
+applyOrderSearch(
+    "shopkeeperOrderSearch",
+    "myOrdersContainer"
+);
+
+// ========================================
+// COMBINED SEARCH + FILTER - 12.14.13
+// ========================================
+
+function applyCombinedOrderControls(
+    searchId,
+    filterId,
+    containerId
+) {
+    const searchInput =
+        document.getElementById(searchId);
+
+    const filter =
+        document.getElementById(filterId);
+
+    const container =
+        document.getElementById(containerId);
+
+    if (!searchInput || !filter || !container) return;
+
+    function updateOrderDisplay() {
+
+        const searchText =
+            searchInput.value.toLowerCase().trim();
+
+        const selectedStatus =
+            filter.value;
+
+        const cards =
+            container.querySelectorAll("[data-status]");
+
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+
+            const cardStatus =
+                card.dataset.status;
+
+            const cardText =
+                card.textContent.toLowerCase();
+
+            const statusMatch =
+                selectedStatus === "All" ||
+                cardStatus === selectedStatus;
+
+            const searchMatch =
+                searchText === "" ||
+                cardText.includes(searchText);
+
+            if (statusMatch && searchMatch) {
+
+                card.style.display = "";
+                visibleCount++;
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+        let noResultsMessage =
+            container.querySelector(
+                ".no-combined-results"
+            );
+
+        if (visibleCount === 0 && cards.length > 0) {
+
+            if (!noResultsMessage) {
+
+                noResultsMessage =
+                    document.createElement("p");
+
+                noResultsMessage.className =
+                    "no-combined-results";
+
+                noResultsMessage.textContent =
+                    "No matching orders found.";
+
+                container.appendChild(
+                    noResultsMessage
+                );
+            }
+
+        } else {
+
+            if (noResultsMessage) {
+                noResultsMessage.remove();
+            }
+
+        }
+    }
+
+    searchInput.addEventListener(
+        "input",
+        updateOrderDisplay
+    );
+
+    filter.addEventListener(
+        "change",
+        updateOrderDisplay
+    );
+}
+
+
+// Farmer Dashboard
+applyCombinedOrderControls(
+    "farmerOrderSearch",
+    "farmerOrderFilter",
+    "orderRequestContainer"
+);
+
+
+// Shopkeeper My Orders
+applyCombinedOrderControls(
+    "shopkeeperOrderSearch",
+    "shopkeeperOrderFilter",
+    "myOrdersContainer"
+);
+
+// ========================================
+// ORDER SORTING - 12.14.14
+// ========================================
+
+function applyOrderSorting(sortId, containerId) {
+
+    const sortSelect =
+        document.getElementById(sortId);
+
+    const container =
+        document.getElementById(containerId);
+
+    if (!sortSelect || !container) return;
+
+    sortSelect.addEventListener("change", function () {
+
+        const sortType = this.value;
+
+        const cards =
+            Array.from(
+                container.querySelectorAll("[data-status]")
+            );
+
+        cards.sort((a, b) => {
+
+            const orderIdA =
+                a.textContent.match(/CL-(\d+)/)?.[1] || 0;
+
+            const orderIdB =
+                b.textContent.match(/CL-(\d+)/)?.[1] || 0;
+
+            const valueA =
+                Number(
+                    a.textContent
+                        .match(/Total Order Value:\s*₹([\d.]+)/)?.[1]
+                    || 0
+                );
+
+            const valueB =
+                Number(
+                    b.textContent
+                        .match(/Total Order Value:\s*₹([\d.]+)/)?.[1]
+                    || 0
+                );
+
+            if (sortType === "newest") {
+                return Number(orderIdB) - Number(orderIdA);
+            }
+
+            if (sortType === "oldest") {
+                return Number(orderIdA) - Number(orderIdB);
+            }
+
+            if (sortType === "highValue") {
+                return valueB - valueA;
+            }
+
+            if (sortType === "lowValue") {
+                return valueA - valueB;
+            }
+
+            return 0;
+        });
+
+        cards.forEach(card => {
+            container.appendChild(card);
+        });
+
+    });
+}
+
+
+// Farmer Dashboard
+applyOrderSorting(
+    "farmerOrderSort",
+    "orderRequestContainer"
+);
+
+
+// Shopkeeper My Orders
+applyOrderSorting(
+    "shopkeeperOrderSort",
+    "myOrdersContainer"
+);
+
+// ========================================
+// ORDER COUNT SUMMARY - 12.14.15
+// ========================================
+
+function updateFarmerOrderCounts() {
+
+    const orders =
+        JSON.parse(
+            localStorage.getItem("farm2landOrderRequests")
+        ) || [];
+
+    const total =
+        orders.length;
+
+    const pending =
+        orders.filter(order =>
+            order.status === "Pending"
+        ).length;
+
+    const accepted =
+        orders.filter(order =>
+            order.status === "Accepted"
+        ).length;
+
+    const rejected =
+        orders.filter(order =>
+            order.status === "Rejected"
+        ).length;
+
+    const ready =
+        orders.filter(order =>
+            order.status === "Ready for Delivery"
+        ).length;
+
+    const delivered =
+        orders.filter(order =>
+            order.status === "Delivered"
+        ).length;
+
+
+    const totalElement =
+        document.getElementById("farmerTotalOrders");
+
+    const pendingElement =
+        document.getElementById("farmerPendingOrders");
+
+    const acceptedElement =
+        document.getElementById("farmerAcceptedOrders");
+
+    const rejectedElement =
+        document.getElementById("farmerRejectedOrders");
+
+    const readyElement =
+        document.getElementById("farmerReadyOrders");
+
+    const deliveredElement =
+        document.getElementById("farmerDeliveredOrders");
+
+
+    if (totalElement)
+        totalElement.textContent = total;
+
+    if (pendingElement)
+        pendingElement.textContent = pending;
+
+    if (acceptedElement)
+        acceptedElement.textContent = accepted;
+
+    if (rejectedElement)
+        rejectedElement.textContent = rejected;
+
+    if (readyElement)
+        readyElement.textContent = ready;
+
+    if (deliveredElement)
+        deliveredElement.textContent = delivered;
+}
+
+
+// Update counts when page loads
+updateFarmerOrderCounts();
+
+// ========================================
+// SHOPKEEPER ORDER COUNT SUMMARY
+// 12.14.15
+// ========================================
+
+function updateShopkeeperOrderCounts() {
+
+    const orders =
+        JSON.parse(
+            localStorage.getItem("farm2landOrderRequests")
+        ) || [];
+
+    const total =
+        orders.length;
+
+    const pending =
+        orders.filter(order =>
+            order.status === "Pending"
+        ).length;
+
+    const accepted =
+        orders.filter(order =>
+            order.status === "Accepted"
+        ).length;
+
+    const rejected =
+        orders.filter(order =>
+            order.status === "Rejected"
+        ).length;
+
+    const ready =
+        orders.filter(order =>
+            order.status === "Ready for Delivery"
+        ).length;
+
+    const delivered =
+        orders.filter(order =>
+            order.status === "Delivered"
+        ).length;
+
+
+    const totalElement =
+        document.getElementById("shopkeeperTotalOrders");
+
+    const pendingElement =
+        document.getElementById("shopkeeperPendingOrders");
+
+    const acceptedElement =
+        document.getElementById("shopkeeperAcceptedOrders");
+
+    const rejectedElement =
+        document.getElementById("shopkeeperRejectedOrders");
+
+    const readyElement =
+        document.getElementById("shopkeeperReadyOrders");
+
+    const deliveredElement =
+        document.getElementById("shopkeeperDeliveredOrders");
+
+
+    if (totalElement)
+        totalElement.textContent = total;
+
+    if (pendingElement)
+        pendingElement.textContent = pending;
+
+    if (acceptedElement)
+        acceptedElement.textContent = accepted;
+
+    if (rejectedElement)
+        rejectedElement.textContent = rejected;
+
+    if (readyElement)
+        readyElement.textContent = ready;
+
+    if (deliveredElement)
+        deliveredElement.textContent = delivered;
+}
+
+
+// Update counts when page loads
+updateShopkeeperOrderCounts();
+
+function applyOrderCountCardClicks(cardSelector, filterId) {
+    const cards = document.querySelectorAll(
+        `${cardSelector}[data-filter]`
+    );
+
+    const filter = document.getElementById(filterId);
+
+    if (!filter) return;
+
+    cards.forEach(card => {
+        card.addEventListener("click", function () {
+
+            const selectedFilter = this.dataset.filter || "All";
+
+            filter.value = selectedFilter;
+
+            filter.dispatchEvent(new Event("change"));
+
+            const orderSection = filter.closest("section");
+
+            if (orderSection) {
+                orderSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        });
+    });
+}
+
+applyOrderCountCardClicks(
+    ".order-count-clickable",
+    "farmerOrderFilter"
+);
+
+applyOrderCountCardClicks(
+    ".order-count-clickable",
+    "shopkeeperOrderFilter"
+);
+
+function applyOrderCountCardClicks(cardSelector, filterId, containerId) {
+    const cards = document.querySelectorAll(
+        `${cardSelector}[data-filter]`
+    );
+
+    const filter = document.getElementById(filterId);
+    const container = document.getElementById(containerId);
+
+    if (!filter) return;
+
+    cards.forEach(card => {
+        card.addEventListener("click", function () {
+
+            const selectedFilter = this.dataset.filter || "All";
+
+            filter.value = selectedFilter;
+
+            filter.dispatchEvent(new Event("change"));
+
+            if (container) {
+                container.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        });
+    });
+}
+
+applyOrderCountCardClicks(
+    ".order-count-clickable",
+    "farmerOrderFilter",
+    "orderRequestContainer"
+);
+
+applyOrderCountCardClicks(
+    ".order-count-clickable",
+    "shopkeeperOrderFilter",
+    "myOrdersContainer"
+);
