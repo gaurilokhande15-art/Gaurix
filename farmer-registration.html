@@ -121,14 +121,19 @@ document.getElementById("farmerRegistrationForm").addEventListener("submit", asy
         }
     });
 
-    if (error) {
-        alert("Registration failed: " + error.message);
-        return;
-    }
+  if (error) {
+    alert("Registration failed: " + error.message);
+    return;
+}
 
-    alert("Account created successfully! Please check your email for confirmation.");
+if (!data || !data.user) {
+    alert("Registration did not complete. Please try again.");
+    return;
+}
 
-    window.location.href = "farmer-dashboard.html";
+alert("Account created successfully! Please check your email for confirmation.");
+
+window.location.href = "farmer-dashboard.html";  
 });
 </script>
 </body>
