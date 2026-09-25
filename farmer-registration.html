@@ -91,6 +91,11 @@
 
         </form>
 
+        <p class="login-link">
+    Already have an account?
+    <a href="farmer-login.html">Login here</a>
+</p>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -122,10 +127,18 @@ document.getElementById("farmerRegistrationForm").addEventListener("submit", asy
     });
 
   if (error) {
+    if (
+        error.message.toLowerCase().includes("already registered") ||
+        error.message.toLowerCase().includes("already exists")
+    ) {
+        alert("This email is already registered. Please login.");
+        window.location.href = "farmer-login.html";
+        return;
+    }
+
     alert("Registration failed: " + error.message);
     return;
 }
-
 if (!data || !data.user) {
     alert("Registration did not complete. Please try again.");
     return;

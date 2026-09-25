@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopkeeper Login - Cropland</title>
+
+    <link rel="stylesheet" href="css/style1.css">
+</head>
+
+<body>
+
+    <div class="registration-container">
+        <div class="registration-box">
+
+            <h1>Shopkeeper Login</h1>
+            <p class="form-subtitle">Login to your Cropland account</p>
+
+            <form id="shopkeeperLoginForm">
+
+                <div class="form-group">
+                    <label for="shopkeeperLoginEmail">Email</label>
+                    <input
+                        type="email"
+                        id="shopkeeperLoginEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="shopkeeperLoginPassword">Password</label>
+                    <input
+                        type="password"
+                        id="shopkeeperLoginPassword"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="register-btn">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="login-link">
+                Don't have an account?
+                <a href="shopkeeper-registration.html">Register here</a>
+            </p>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+
+    <script>
+        document.getElementById("shopkeeperLoginForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("shopkeeperLoginEmail").value.trim();
+            const password = document.getElementById("shopkeeperLoginPassword").value;
+
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                alert("Login failed: " + error.message);
+                return;
+            }
+
+            window.location.href = "shopkeeper-dashboard.html";
+        });
+    </script>
+
+</body>
+</html>
