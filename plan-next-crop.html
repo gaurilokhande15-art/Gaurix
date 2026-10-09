@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Plan Next Crop </title>
+
+    <link rel="stylesheet" href="css/css/plan-next-crop.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="farmaland.html" class="logo"><span></span></a>
+
+        <nav>
+            <a href="farmaland.html">Home</a>
+            <a href="farmer-dashboard.html">Dashboard</a>
+            <a href="plan-next-crop.html" class="active">Plan Next Crop</a>
+        </nav>
+    </header>
+
+
+    <!-- Page Heading -->
+    <main class="planning-page">
+
+        <div class="page-heading">
+            <span class="eyebrow">PLAN YOUR NEXT HARVEST</span>
+
+            <h1>Plan Next Crop</h1>
+
+            <p>
+                Make informed crop decisions, connect with traders
+                and plan your next harvest with confidence.
+            </p>
+        </div>
+
+
+        <!-- Starting Point -->
+        <section class="flowchart">
+
+            <div class="flow-node start-node">
+                <span class="node-icon">🌱</span>
+                <div>
+                    <h2>Plan Next Crop</h2>
+                    <p>Choose how you want to plan your next crop.</p>
+                </div>
+            </div>
+
+            <div class="connector down-arrow">↓</div>
+
+
+            <!-- Two Choices -->
+            <div class="choice-grid">
+
+                <!-- Know What to Grow -->
+                <div class="choice-column">
+
+                    <div class="flow-node choice-node purple">
+                        <span class="node-icon">🌿</span>
+                        <h3>Know What to Grow</h3>
+                    </div>
+
+                    <div class="connector">↓</div>
+
+                    <a href="#register-planned-crop"
+                       class="flow-node action-node blue">
+                        <span class="node-icon">📋</span>
+                        <span>Register Planned Crop</span>
+                        <span class="node-arrow">→</span>
+                    </a>
+
+                    <div class="connector">↓</div>
+
+                    <a href="#trader-discovery"
+                       class="flow-node action-node green">
+                        <span class="node-icon">🔎</span>
+                        <span>Trader Discovery</span>
+                        <span class="node-arrow">→</span>
+                    </a>
+
+                    <div class="connector">↓</div>
+
+                    <a href="#pre-order"
+                       class="flow-node action-node purple">
+                        <span class="node-icon">📅</span>
+                        <span>Pre-Order / Commitment</span>
+                        <span class="node-arrow">→</span>
+                    </a>
+
+                </div>
+
+
+                <!-- Don't Know What to Grow -->
+                <div class="choice-column">
+
+                    <div class="flow-node choice-node pink">
+                        <span class="node-icon">❓</span>
+                        <h3>Don't Know What to Grow</h3>
+                    </div>
+
+                    <div class="connector">↓</div>
+
+                    <a href="#market-demand"
+                       class="flow-node action-node yellow">
+                        <span class="node-icon">📊</span>
+                        <span>Explore Market Demand</span>
+                        <span class="node-arrow">→</span>
+                    </a>
+
+                    <div class="connector">↓</div>
+
+                    <a href="#trader-requirements"
+                       class="flow-node action-node blue">
+                        <span class="node-icon">📋</span>
+                        <span>Demand + Trader Requirements</span>
+                        <span class="node-arrow">→</span>
+                    </a>
+
+                    <div class="connector">↓</div>
+
+                    <a href="#crop-selection"
+                       class="flow-node action-node purple">
+                        <span class="node-icon">🌿</span>
+                        <span>Informed Crop Selection</span>
+                        <span class="node-arrow">→</span>
+                    </a>
+
+                    <div class="connector">↓</div>
+
+                    <a href="#crop-registration"
+                       class="flow-node action-node pink">
+                        <span class="node-icon">📝</span>
+                        <span>Crop Registration</span>
+                        <span class="node-arrow">→</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Common Process -->
+            <div class="connector down-arrow">↓</div>
+
+            <div class="flow-node common-node green">
+                <span class="node-icon">🌱</span>
+                <div>
+                    <h3>Crop Cultivation</h3>
+                    <p>Grow the selected crop.</p>
+                </div>
+            </div>
+
+            <div class="connector down-arrow">↓</div>
+
+            <div class="flow-node common-node purple">
+                <span class="node-icon">🌾</span>
+                <div>
+                    <h3>Harvest</h3>
+                    <p>Harvest the crop when it is ready.</p>
+                </div>
+            </div>
+
+            <div class="connector down-arrow">↓</div>
+
+            <div class="flow-node common-node yellow">
+                <span class="node-icon">🏪</span>
+                <div>
+                    <h3>Bulk Direct Sale</h3>
+                    <p>Connect directly with buyers.</p>
+                </div>
+            </div>
+
+            <div class="connector down-arrow">↓</div>
+
+            <div class="payment-trader">
+
+                <div class="payment-box">
+                    <span class="node-icon">💰</span>
+                    <h3>Payment</h3>
+                </div>
+
+                <span class="payment-arrow">↔</span>
+
+                <div class="trader-box">
+                    <span class="node-icon">👨‍🌾</span>
+                    <h3>Trader</h3>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Action Sections: We'll develop these next -->
+        <section class="action-sections">
+
+           
+
+           <div class="action-placeholder" id="register-planned-crop">
+    <h2>Register Planned Crop</h2>
+
+    <p>
+        Plan your next harvest by entering your crop details.
+    </p>
+
+    <form id="plannedCropForm">
+
+        <div class="form-group">
+            <label for="cropName">Crop Name</label>
+            <input
+                type="text"
+                id="cropName"
+                placeholder="e.g. Tomato, Wheat, Onion"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="cropQuantity">Planned Quantity (kg)</label>
+            <input
+                type="number"
+                id="cropQuantity"
+                min="1"
+                step="any"
+                placeholder="Enter quantity in kg"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="harvestDate">Expected Harvest Date</label>
+            <input
+                type="date"
+                id="harvestDate"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="cropLocation">Farm Location</label>
+            <input
+                type="text"
+                id="cropLocation"
+                placeholder="Enter village or city"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="cropNotes">Additional Details (Optional)</label>
+            <textarea
+                id="cropNotes"
+                rows="3"
+                placeholder="Add any information about your planned crop"
+            ></textarea>
+        </div>
+
+        <button type="submit" class="crop-submit-btn">
+            Register Planned Crop
+        </button>
+
+        <p id="cropFormMessage" role="status"></p>
+
+    </form>
+
+    <!-- Trader Discovery Section -->
+
+<div class="action-placeholder trader-discovery-section" id="trader-discovery">
+
+    <div class="section-heading">
+        <span class="eyebrow">CONNECT WITH BUYERS</span>
+        <h2>Trader Discovery</h2>
+        <p>Discover potential buyers for your planned harvest.</p>
+    </div>
+
+    <div class="trader-search">
+        <input
+            type="text"
+            id="traderSearch"
+            placeholder="Search by trader, crop or location..."
+        >
+
+        <select id="traderCropFilter">
+            <option value="all">All Crops</option>
+            <option value="tomato">Tomato</option>
+            <option value="onion">Onion</option>
+            <option value="wheat">Wheat</option>
+            <option value="rice">Rice</option>
+        </select>
+    </div>
+
+    <div class="trader-grid">
+
+        <article class="trader-card">
+            <div class="trader-card-top">
+                <div class="trader-avatar">R</div>
+                <div>
+                    <h3>Raj Traders</h3>
+                    <p>📍 Nanded, Maharashtra</p>
+                </div>
+            </div>
+
+            <div class="trader-details">
+                <p><strong>Interested in:</strong> Tomato, Onion</p>
+                <p><strong>Required quantity:</strong> 500–1000 kg</p>
+                <p><strong>Purchase type:</strong> Bulk purchase</p>
+            </div>
+
+            <button type="button" class="trader-interest-btn">
+                Express Interest →
+            </button>
+        </article>
+
+        <article class="trader-card">
+            <div class="trader-card-top">
+                <div class="trader-avatar">S</div>
+                <div>
+                    <h3>Shree Agro Market</h3>
+                    <p>📍 Latur, Maharashtra</p>
+                </div>
+            </div>
+
+            <div class="trader-details">
+                <p><strong>Interested in:</strong> Wheat, Rice</p>
+                <p><strong>Required quantity:</strong> 1000–2000 kg</p>
+                <p><strong>Purchase type:</strong> Wholesale</p>
+            </div>
+
+            <button type="button" class="trader-interest-btn">
+                Express Interest →
+            </button>
+        </article>
+
+        <article class="trader-card">
+            <div class="trader-card-top">
+                <div class="trader-avatar">A</div>
+                <div>
+                    <h3>Agro Fresh Buyers</h3>
+                    <p>📍 Parbhani, Maharashtra</p>
+                </div>
+            </div>
+
+            <div class="trader-details">
+                <p><strong>Interested in:</strong> Tomato, Wheat</p>
+                <p><strong>Required quantity:</strong> 300–800 kg</p>
+                <p><strong>Purchase type:</strong> Direct purchase</p>
+            </div>
+
+            <button type="button" class="trader-interest-btn">
+                Express Interest →
+            </button>
+        </article>
+
+    </div>
+
+    <p class="prototype-note">
+        Demo trader profiles for frontend development.
+        Real trader listings will be connected through Supabase later.
+    </p>
+
+</div>
+</div>
+
+<!-- Pre-Order / Commitment Section -->
+<div class="action-placeholder preorder-section" id="pre-order">
+
+    <div class="section-heading">
+        <span class="eyebrow">PLAN YOUR SALE</span>
+        <h2>Pre-Order / Commitment</h2>
+        <p>Share your expected harvest details so interested traders can plan their purchases.</p>
+    </div>
+
+    <form id="preOrderForm">
+
+        <div class="form-group">
+            <label for="preOrderCrop">Crop Name</label>
+            <input
+                type="text"
+                id="preOrderCrop"
+                placeholder="e.g. Tomato"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="preOrderQuantity">Expected Quantity (kg)</label>
+            <input
+                type="number"
+                id="preOrderQuantity"
+                min="1"
+                placeholder="Enter expected quantity"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="preOrderDate">Expected Harvest Date</label>
+            <input
+                type="date"
+                id="preOrderDate"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="preOrderLocation">Farm Location</label>
+            <input
+                type="text"
+                id="preOrderLocation"
+                placeholder="Village or city"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="preOrderPrice">Expected Price per kg (₹)</label>
+            <input
+                type="number"
+                id="preOrderPrice"
+                min="0"
+                step="any"
+                placeholder="Optional expected price"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="preOrderNotes">Additional Details</label>
+            <textarea
+                id="preOrderNotes"
+                rows="3"
+                placeholder="Quality, variety or other requirements"
+            ></textarea>
+        </div>
+
+        <button type="submit" class="crop-submit-btn">
+            Submit Pre-Order Details
+        </button>
+
+        <p id="preOrderMessage" role="status"></p>
+
+    </form>
+</div>
+
+<!-- Market Demand Section -->
+<div class="action-placeholder market-demand-section" id="market-demand">
+
+    <div class="section-heading">
+        <span class="eyebrow">UNDERSTAND THE MARKET</span>
+        <h2>Explore Market Demand</h2>
+        <p>
+            Explore which crops buyers may need before deciding
+            what to grow next.
+        </p>
+    </div>
+
+    <div class="demand-grid">
+
+        <article class="demand-card">
+            <div class="demand-icon">🍅</div>
+            <h3>Tomato</h3>
+            <p class="demand-category">Vegetable</p>
+            <div class="demand-info">
+                <span>Buyer interest</span>
+                <strong>To be updated</strong>
+            </div>
+            <p class="demand-description">
+                Check local trader requirements before planning cultivation.
+            </p>
+            <button
+                type="button"
+                class="demand-select-btn"
+                data-crop="Tomato">
+                Consider Tomato
+            </button>
+        </article>
+
+        <article class="demand-card">
+            <div class="demand-icon">🧅</div>
+            <h3>Onion</h3>
+            <p class="demand-category">Vegetable</p>
+            <div class="demand-info">
+                <span>Buyer interest</span>
+                <strong>To be updated</strong>
+            </div>
+            <p class="demand-description">
+                Review expected demand and buyer quantity requirements.
+            </p>
+            <button
+                type="button"
+                class="demand-select-btn"
+                data-crop="Onion">
+                Consider Onion
+            </button>
+        </article>
+
+        <article class="demand-card">
+            <div class="demand-icon">🌾</div>
+            <h3>Wheat</h3>
+            <p class="demand-category">Grain</p>
+            <div class="demand-info">
+                <span>Buyer interest</span>
+                <strong>To be updated</strong>
+            </div>
+            <p class="demand-description">
+                Explore wholesale requirements before choosing this crop.
+            </p>
+            <button
+                type="button"
+                class="demand-select-btn"
+                data-crop="Wheat">
+                Consider Wheat
+            </button>
+        </article>
+
+        <article class="demand-card">
+            <div class="demand-icon">🌾</div>
+            <h3>Rice</h3>
+            <p class="demand-category">Grain</p>
+            <div class="demand-info">
+                <span>Buyer interest</span>
+                <strong>To be updated</strong>
+            </div>
+            <p class="demand-description">
+                Check local suitability and trader purchase requirements.
+            </p>
+            <button
+                type="button"
+                class="demand-select-btn"
+                data-crop="Rice">
+                Consider Rice
+            </button>
+        </article>
+
+    </div>
+
+    <p class="prototype-note">
+        Crop options are illustrative. Actual demand information will be
+        connected to trader requirements and market data later.
+    </p>
+
+</div>
+
+<!-- Trader Requirements Section -->
+<div class="action-placeholder trader-requirements-section" id="trader-requirements">
+
+    <div class="section-heading">
+        <span class="eyebrow">WHAT BUYERS NEED</span>
+        <h2>Trader Requirements</h2>
+        <p>
+            Understand buyer requirements before deciding which crop to cultivate.
+        </p>
+    </div>
+
+    <div class="requirements-table-wrapper">
+        <table class="requirements-table">
+            <thead>
+                <tr>
+                    <th>Trader</th>
+                    <th>Required Crop</th>
+                    <th>Quantity</th>
+                    <th>Expected Buying Time</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Raj Traders</td>
+                    <td>Tomato</td>
+                    <td>500–1000 kg</td>
+                    <td>To be updated</td>
+                    <td>Nanded</td>
+                </tr>
+
+                <tr>
+                    <td>Shree Agro Market</td>
+                    <td>Wheat</td>
+                    <td>1000–2000 kg</td>
+                    <td>To be updated</td>
+                    <td>Latur</td>
+                </tr>
+
+                <tr>
+                    <td>Agro Fresh Buyers</td>
+                    <td>Onion</td>
+                    <td>300–800 kg</td>
+                    <td>To be updated</td>
+                    <td>Parbhani</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="prototype-note">
+        Sample requirements for frontend demonstration only.
+        Verified trader requirements will be connected later.
+    </p>
+
+</div>
+
+<!-- ===== INFORMED CROP SELECTION ===== -->
+<div class="action-placeholder informed-selection-section" id="crop-selection">
+
+    <div class="section-heading">
+        <span class="eyebrow">MAKE AN INFORMED DECISION</span>
+        <h2>Informed Crop Selection</h2>
+        <p>
+            Compare your interests, local conditions and trader requirements
+            before selecting your next crop.
+        </p>
+    </div>
+
+    <div class="selection-grid">
+
+        <label class="selection-card">
+            <input type="radio" name="selectedCrop" value="Tomato">
+            <span class="selection-icon">🍅</span>
+            <strong>Tomato</strong>
+            <small>Vegetable</small>
+        </label>
+
+        <label class="selection-card">
+            <input type="radio" name="selectedCrop" value="Onion">
+            <span class="selection-icon">🧅</span>
+            <strong>Onion</strong>
+            <small>Vegetable</small>
+        </label>
+
+        <label class="selection-card">
+            <input type="radio" name="selectedCrop" value="Wheat">
+            <span class="selection-icon">🌾</span>
+            <strong>Wheat</strong>
+            <small>Grain</small>
+        </label>
+
+        <label class="selection-card">
+            <input type="radio" name="selectedCrop" value="Rice">
+            <span class="selection-icon">🌾</span>
+            <strong>Rice</strong>
+            <small>Grain</small>
+        </label>
+
+    </div>
+
+    <button type="button" id="continueCropSelection" class="crop-submit-btn">
+        Continue to Crop Registration →
+    </button>
+
+    <p id="selectionMessage" role="status"></p>
+
+</div>
+
+
+<!-- ===== CROP REGISTRATION ===== -->
+<div class="action-placeholder crop-registration-section" id="crop-registration">
+
+    <div class="section-heading">
+        <span class="eyebrow">REGISTER YOUR PLAN</span>
+        <h2>Crop Registration</h2>
+        <p>Enter your planned crop details before cultivation begins.</p>
+    </div>
+
+    <form id="cropRegistrationForm">
+
+        <div class="form-group">
+            <label for="registrationCropName">Selected Crop</label>
+            <input
+                type="text"
+                id="registrationCropName"
+                placeholder="Choose a crop above or enter a crop name"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="registrationQuantity">Expected Quantity (kg)</label>
+            <input
+                type="number"
+                id="registrationQuantity"
+                min="1"
+                placeholder="Enter estimated quantity"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="registrationHarvestDate">Expected Harvest Date</label>
+            <input
+                type="date"
+                id="registrationHarvestDate"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="registrationLocation">Farm Location</label>
+            <input
+                type="text"
+                id="registrationLocation"
+                placeholder="Village or city"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="registrationNotes">Additional Information</label>
+            <textarea
+                id="registrationNotes"
+                rows="3"
+                placeholder="Variety, cultivation plans or other details"
+            ></textarea>
+        </div>
+
+        <button type="submit" class="crop-submit-btn">
+            Register Crop Plan
+        </button>
+
+        <p id="registrationMessage" role="status"></p>
+
+    </form>
+
+</div>
+
+
+<!-- ===== CULTIVATION AND HARVEST ===== -->
+<div class="action-placeholder cultivation-section" id="cultivation-harvest">
+
+    <div class="section-heading">
+        <span class="eyebrow">FROM FARM TO HARVEST</span>
+        <h2>Crop Cultivation & Harvest</h2>
+        <p>Follow the main stages of your crop journey.</p>
+    </div>
+
+    <div class="journey-grid">
+
+        <article class="journey-card">
+            <span class="journey-number">01</span>
+            <div class="journey-icon">🌱</div>
+            <h3>Crop Cultivation</h3>
+            <p>Prepare the field, sow seeds and care for the crop.</p>
+            <span class="journey-status">Planned Stage</span>
+        </article>
+
+        <article class="journey-card">
+            <span class="journey-number">02</span>
+            <div class="journey-icon">💧</div>
+            <h3>Crop Monitoring</h3>
+            <p>Monitor crop growth, irrigation and crop health.</p>
+            <span class="journey-status">Growing Stage</span>
+        </article>
+
+        <article class="journey-card">
+            <span class="journey-number">03</span>
+            <div class="journey-icon">🌾</div>
+            <h3>Harvest</h3>
+            <p>Harvest the crop and estimate the quantity available for sale.</p>
+            <span class="journey-status">Harvest Stage</span>
+        </article>
+
+        <article class="journey-card">
+            <span class="journey-number">04</span>
+            <div class="journey-icon">📦</div>
+            <h3>Prepare for Sale</h3>
+            <p>Sort, grade and prepare the harvested crop for buyers.</p>
+            <span class="journey-status">Ready for Market</span>
+        </article>
+
+    </div>
+
+</div>
+
+
+<!-- ===== BULK DIRECT SALE AND PAYMENT ===== -->
+<div class="action-placeholder direct-sale-section" id="bulk-direct-sale">
+
+    <div class="section-heading">
+        <span class="eyebrow">SELL DIRECTLY</span>
+        <h2>Bulk Direct Sale</h2>
+        <p>Connect the harvested crop with interested traders.</p>
+    </div>
+
+    <div class="sale-flow">
+
+        <div class="sale-flow-card">
+            <span>🌾</span>
+            <h3>Farmer</h3>
+            <p>Offers harvested produce.</p>
+        </div>
+
+        <div class="sale-arrow">→</div>
+
+        <div class="sale-flow-card">
+            <span>📦</span>
+            <h3>Bulk Order</h3>
+            <p>Quantity and price are agreed upon.</p>
+        </div>
+
+        <div class="sale-arrow">→</div>
+
+        <div class="sale-flow-card">
+            <span>🛒</span>
+            <h3>Trader</h3>
+            <p>Confirms the purchase.</p>
+        </div>
+
+    </div>
+
+    <div class="payment-panel" id="payment">
+        <div class="payment-icon">💳</div>
+
+        <div>
+            <h3>Payment & Order Completion</h3>
+            <p>
+                Track the agreed amount, delivery status and payment confirmation.
+                Actual payment processing will be integrated later.
+            </p>
+        </div>
+
+        <span class="payment-status">Backend Integration Pending</span>
+    </div>
+
+
+    <!-- ===== MY CROP PLANS SUMMARY ===== -->
+<section class="action-placeholder my-crop-plans-section" id="my-crop-plans">
+    <div class="section-heading">
+        <span class="eyebrow">YOUR FARMING JOURNEY</span>
+        <h2>My Crop Plans</h2>
+        <p>Review the plans and pre-orders saved in this browser.</p>
+    </div>
+
+    <div class="crop-summary-grid">
+        <div class="crop-summary-card">
+            <span>🌱</span>
+            <h3>Planned Crops</h3>
+            <strong id="summaryCropCount">0</strong>
+        </div>
+
+        <div class="crop-summary-card">
+            <span>📋</span>
+            <h3>Crop Registrations</h3>
+            <strong id="summaryRegistrationCount">0</strong>
+        </div>
+
+        <div class="crop-summary-card">
+            <span>🤝</span>
+            <h3>Pre-Orders</h3>
+            <strong id="summaryPreOrderCount">0</strong>
+        </div>
+
+        <div class="crop-summary-card">
+            <span>🛒</span>
+            <h3>Trader Interests</h3>
+            <strong id="summaryInterestCount">0</strong>
+        </div>
+    </div>
+
+    <p class="prototype-note">
+        Summary is based on information saved in this browser. Shared access
+        will be available after backend integration.
+    </p>
+</section>
+
+        </section>
+
+
+
+
+    </main>
+
+
+    <footer>
+        <p> | Better connections from farm to market.</p>
+    </footer>
+<script src="js/plan-next-crop.js"></script>
+</body>
+</html>

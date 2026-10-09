@@ -1,0 +1,1278 @@
+/* =========================
+   GENERAL STYLING
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #faf9f5;
+    color: #26352a;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 7%;
+    background: #fff;
+    border-bottom: 1px solid #e9e6dd;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    color: #405a36;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #d49b35;
+}
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.navbar nav a {
+    font-size: 14px;
+    color: #555c50;
+    transition: color 0.2s ease;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+    color: #577744;
+    font-weight: 700;
+}
+
+
+/* =========================
+   PAGE HEADING
+========================= */
+
+.planning-page {
+    width: 100%;
+    padding: 55px 7%;
+}
+
+.page-heading {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 45px;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: #718b58;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.page-heading h1 {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.2;
+    color: #344a2e;
+    margin-bottom: 15px;
+}
+
+.page-heading p {
+    font-size: 15px;
+    color: #74796f;
+}
+
+
+/* =========================
+   FLOWCHART
+========================= */
+
+.flowchart {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.flow-node {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid #deded6;
+    border-radius: 17px;
+    padding: 15px 20px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(43, 59, 37, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.node-icon {
+    font-size: 25px;
+    flex-shrink: 0;
+}
+
+.flow-node h2,
+.flow-node h3,
+.flow-node p {
+    margin: 0;
+}
+
+.flow-node h2 {
+    font-size: 22px;
+}
+
+.flow-node h3 {
+    font-size: 16px;
+}
+
+.flow-node p {
+    font-size: 12px;
+    margin-top: 3px;
+    opacity: 0.8;
+}
+
+
+/* Starting node */
+
+.start-node {
+    justify-content: center;
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 22px;
+    border: 2px solid #85b5d6;
+    border-radius: 35px;
+    background: #eaf5ff;
+    color: #243e52;
+}
+
+
+/* Connectors */
+
+.connector {
+    text-align: center;
+    color: #6b7f62;
+    font-size: 25px;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.down-arrow {
+    margin: 8px 0;
+}
+
+
+/* Two-column paths */
+
+.choice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    align-items: start;
+}
+
+.choice-column {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.choice-node {
+    justify-content: center;
+    min-height: 72px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.choice-node h3 {
+    font-size: 18px;
+}
+
+
+/* Clickable action nodes */
+
+.action-node {
+    min-height: 70px;
+    justify-content: flex-start;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.action-node > span:nth-child(2) {
+    flex: 1;
+}
+
+.node-arrow {
+    font-size: 20px;
+    color: #68765e;
+}
+
+.action-node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 9px 20px rgba(43, 59, 37, 0.12);
+}
+
+
+/* =========================
+   COLOR THEMES
+========================= */
+
+.purple {
+    background: #f0e8ff;
+    border-color: #c5a5eb;
+    color: #594078;
+}
+
+.pink {
+    background: #ffedf3;
+    border-color: #f0b0c8;
+    color: #9d365b;
+}
+
+.blue {
+    background: #e8f4ff;
+    border-color: #b5d7f2;
+    color: #315a7d;
+}
+
+.green {
+    background: #e9f5e9;
+    border-color: #b9dfbd;
+    color: #416b44;
+}
+
+.yellow {
+    background: #fff4d9;
+    border-color: #f0d08a;
+    color: #84611d;
+}
+
+
+/* =========================
+   COMMON PROCESS
+========================= */
+
+.common-node {
+    max-width: 570px;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 18px 25px;
+    border-radius: 22px;
+}
+
+.common-node h3 {
+    font-size: 17px;
+}
+
+
+/* Payment and trader */
+
+.payment-trader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    margin: 15px auto 30px;
+}
+
+.payment-box,
+.trader-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 24px;
+    border-radius: 35px;
+    min-width: 190px;
+    text-align: center;
+}
+
+.payment-box {
+    background: #286e68;
+    color: white;
+}
+
+.trader-box {
+    background: #e5f2ff;
+    border: 1px solid #8cbce6;
+    color: #315a7d;
+}
+
+.payment-arrow {
+    font-size: 30px;
+    color: #607b50;
+}
+
+
+/* =========================
+   ACTION SECTIONS
+========================= */
+
+.action-sections {
+    max-width: 850px;
+    margin: 65px auto 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.action-placeholder {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #e2e4da;
+    scroll-margin-top: 100px;
+}
+
+.action-placeholder h2 {
+    font-size: 17px;
+    color: #405a36;
+    margin-bottom: 8px;
+}
+
+.action-placeholder p {
+    font-size: 13px;
+    color: #777d71;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    padding: 24px;
+    background: #344a2e;
+    color: white;
+    font-size: 12px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 15px 5%;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .navbar nav {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .planning-page {
+        padding: 40px 5%;
+    }
+
+    .choice-grid {
+        gap: 16px;
+    }
+
+    .flow-node {
+        padding: 13px;
+        gap: 9px;
+    }
+
+    .choice-node h3 {
+        font-size: 15px;
+    }
+
+    .action-node {
+        font-size: 12px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 520px) {
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar nav {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .navbar nav a {
+        font-size: 12px;
+    }
+
+    .planning-page {
+        padding: 32px 15px;
+    }
+
+    .page-heading {
+        margin-bottom: 30px;
+    }
+
+    .page-heading p {
+        font-size: 13px;
+    }
+
+    .choice-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .choice-node h3 {
+        font-size: 17px;
+    }
+
+    .action-node {
+        font-size: 14px;
+        min-height: 62px;
+    }
+
+    .start-node h2 {
+        font-size: 19px;
+    }
+
+    .common-node {
+        justify-content: flex-start;
+    }
+
+    .payment-trader {
+        gap: 8px;
+    }
+
+    .payment-box,
+    .trader-box {
+        min-width: 0;
+        flex: 1;
+        padding: 13px 8px;
+        gap: 5px;
+    }
+
+    .payment-box h3,
+    .trader-box h3 {
+        font-size: 13px;
+    }
+
+    .payment-arrow {
+        font-size: 22px;
+    }
+
+    .action-sections {
+        grid-template-columns: 1fr;
+        margin-top: 45px;
+    }
+}
+
+/* Planned Crop Form */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 18px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #405a36;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d9dfd3;
+    border-radius: 9px;
+    background: #fff;
+    color: #26352a;
+    font: inherit;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: 2px solid #8ca87b;
+    border-color: #668755;
+}
+
+.crop-submit-btn {
+    width: 100%;
+    margin-top: 22px;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #405a36;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.crop-submit-btn:hover {
+    background: #304629;
+}
+
+#cropFormMessage {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+/* ===== TRADER DISCOVERY SECTION ===== */
+
+.trader-discovery-section {
+    padding: 30px;
+}
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+.section-heading .eyebrow {
+    color: #9a7548;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.section-heading h2 {
+    color: #405a36;
+    font-size: 26px;
+    margin: 8px 0;
+}
+
+.section-heading p {
+    color: #777d71;
+    font-size: 14px;
+}
+
+.trader-search {
+    display: grid;
+    grid-template-columns: 1fr 180px;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.trader-search input,
+.trader-search select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d9dfd3;
+    border-radius: 9px;
+    background: white;
+    font: inherit;
+    font-size: 13px;
+}
+
+.trader-search input:focus,
+.trader-search select:focus {
+    outline: none;
+    border-color: #718b61;
+}
+
+.trader-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.trader-card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #e0e5d9;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(43, 59, 37, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.trader-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 22px rgba(43, 59, 37, 0.1);
+}
+
+.trader-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #edf0e9;
+}
+
+.trader-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #e9f2e4;
+    color: #405a36;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.trader-card h3 {
+    font-size: 15px;
+    color: #344a2e;
+}
+
+.trader-card-top p {
+    font-size: 11px;
+    color: #777d71;
+    margin-top: 4px;
+}
+
+.trader-details {
+    flex: 1;
+    padding: 16px 0;
+}
+
+.trader-details p {
+    margin-bottom: 11px;
+    font-size: 12px;
+    color: #666e61;
+}
+
+.trader-details strong {
+    color: #405a36;
+}
+
+.trader-interest-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 9px;
+    background: #405a36;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.trader-interest-btn:hover {
+    background: #304629;
+}
+
+.prototype-note {
+    margin-top: 20px;
+    color: #858a80;
+    font-size: 11px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 800px) {
+    .trader-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .trader-discovery-section {
+        padding: 20px;
+    }
+
+    .trader-search,
+    .trader-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== MARKET DEMAND SECTION ===== */
+
+.market-demand-section {
+    padding: 30px;
+}
+
+.demand-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.demand-card {
+    display: flex;
+    flex-direction: column;
+    padding: 22px 18px;
+    background: #ffffff;
+    border: 1px solid #e0e5d9;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(43, 59, 37, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.demand-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 9px 22px rgba(43, 59, 37, 0.1);
+}
+
+.demand-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+}
+
+.demand-card h3 {
+    color: #344a2e;
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.demand-category {
+    color: #9a7548;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.demand-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px;
+    background: #f7f8f3;
+    border-radius: 9px;
+    margin-bottom: 15px;
+}
+
+.demand-info span {
+    color: #777d71;
+    font-size: 11px;
+}
+
+.demand-info strong {
+    color: #405a36;
+    font-size: 13px;
+}
+
+.demand-description {
+    flex: 1;
+    color: #666e61;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.demand-select-btn {
+    width: 100%;
+    padding: 11px 8px;
+    border: 1px solid #405a36;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #405a36;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.demand-select-btn:hover {
+    background: #405a36;
+    color: #ffffff;
+}
+
+@media (max-width: 1000px) {
+    .demand-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .market-demand-section {
+        padding: 20px;
+    }
+
+    .demand-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* ===== TRADER REQUIREMENTS SECTION ===== */
+
+.trader-requirements-section {
+    padding: 30px;
+}
+
+.requirements-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 25px;
+    border: 1px solid #e0e5d9;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.requirements-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 650px;
+}
+
+.requirements-table th {
+    padding: 16px;
+    background: #405a36;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.requirements-table td {
+    padding: 16px;
+    border-bottom: 1px solid #edf0e9;
+    color: #626b5d;
+    font-size: 12px;
+}
+
+.requirements-table tbody tr:hover {
+    background: #f7f8f3;
+}
+
+.requirements-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.requirements-table td:first-child {
+    color: #344a2e;
+    font-weight: 600;
+}
+
+@media (max-width: 520px) {
+    .trader-requirements-section {
+        padding: 20px;
+    }
+}
+/* =========================================
+   INFORMED CROP SELECTION
+========================================= */
+
+.informed-selection-section,
+.crop-registration-section,
+.cultivation-section,
+.direct-sale-section {
+    padding: 30px;
+}
+
+.selection-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.selection-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 24px 15px;
+    border: 1px solid #e0e5d9;
+    border-radius: 15px;
+    background: #fff;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.selection-card:hover {
+    border-color: #718b61;
+    transform: translateY(-3px);
+}
+
+.selection-card:has(input:checked) {
+    border: 2px solid #405a36;
+    background: #f1f6ed;
+}
+
+.selection-card input {
+    accent-color: #405a36;
+}
+
+.selection-icon {
+    font-size: 34px;
+}
+
+.selection-card strong {
+    color: #344a2e;
+    font-size: 15px;
+}
+
+.selection-card small {
+    color: #777d71;
+    font-size: 12px;
+}
+
+#selectionMessage,
+#registrationMessage {
+    margin-top: 14px;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   CROP REGISTRATION
+========================================= */
+
+.crop-registration-section form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.crop-registration-section .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.crop-registration-section .form-group label {
+    color: #405a36;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.crop-registration-section .form-group input,
+.crop-registration-section .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d9dfd3;
+    border-radius: 9px;
+    background: #fff;
+    color: #344a2e;
+    font: inherit;
+    font-size: 13px;
+}
+
+.crop-registration-section .form-group input:focus,
+.crop-registration-section .form-group textarea:focus {
+    outline: none;
+    border-color: #718b61;
+}
+
+.crop-registration-section .form-group:nth-child(5),
+.crop-registration-section form .crop-submit-btn,
+.crop-registration-section form #registrationMessage {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================
+   CULTIVATION AND HARVEST
+========================================= */
+
+.journey-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.journey-card {
+    position: relative;
+    padding: 23px 18px;
+    border: 1px solid #e0e5d9;
+    border-radius: 15px;
+    background: #fff;
+    transition: transform 0.2s ease;
+}
+
+.journey-card:hover {
+    transform: translateY(-4px);
+}
+
+.journey-number {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #b8c4ad;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.journey-icon {
+    margin: 12px 0 16px;
+    font-size: 32px;
+}
+
+.journey-card h3 {
+    margin-bottom: 10px;
+    color: #344a2e;
+    font-size: 15px;
+}
+
+.journey-card p {
+    min-height: 58px;
+    color: #6d7467;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.journey-status {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 7px 10px;
+    border-radius: 20px;
+    background: #edf3e8;
+    color: #405a36;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   BULK DIRECT SALE
+========================================= */
+
+.sale-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin: 30px 0;
+}
+
+.sale-flow-card {
+    flex: 1;
+    max-width: 240px;
+    padding: 25px 18px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e0e5d9;
+    border-radius: 15px;
+}
+
+.sale-flow-card > span {
+    font-size: 32px;
+}
+
+.sale-flow-card h3 {
+    margin: 12px 0 8px;
+    color: #344a2e;
+    font-size: 15px;
+}
+
+.sale-flow-card p {
+    color: #6d7467;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.sale-arrow {
+    color: #718b61;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   PAYMENT PANEL
+========================================= */
+/* ===== PAYMENT PANEL ===== */
+
+.payment-panel {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #f5f3e9, #e9efdf);
+    border: 1px solid #dce4d3;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px rgba(52, 74, 46, 0.07);
+}
+
+.payment-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 65px;
+    height: 65px;
+    background: #ffffff;
+    border-radius: 14px;
+    font-size: 32px;
+}
+
+.payment-panel > div:nth-child(2) {
+    flex: 1;
+}
+
+.payment-panel h3 {
+    margin: 0 0 10px;
+    color: #344a2e;
+    font-size: 20px;
+}
+
+.payment-panel p {
+    margin: 0;
+    color: #626b5d;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.payment-status {
+    display: inline-block;
+    padding: 9px 13px;
+    background: #fff2d9;
+    color: #8a6425;
+    border: 1px solid #ead6ad;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+    .payment-panel {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .payment-panel h3 {
+        font-size: 18px;
+    }
+
+    .payment-status {
+        white-space: normal;
+    }
+}
+
+
+    /* ===== MY CROP PLANS SUMMARY ===== */
+.my-crop-plans-section {
+    padding: 30px;
+}
+
+.crop-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.crop-summary-card {
+    padding: 24px 16px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e0e5d9;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(43, 59, 37, 0.05);
+}
+
+.crop-summary-card > span {
+    font-size: 30px;
+}
+
+.crop-summary-card h3 {
+    margin: 12px 0;
+    color: #405a36;
+    font-size: 14px;
+}
+
+.crop-summary-card strong {
+    color: #9a7548;
+    font-size: 28px;
+}
+
+@media (max-width: 800px) {
+    .crop-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .my-crop-plans-section {
+        padding: 20px;
+    }
+
+    .crop-summary-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== FINAL RESPONSIVE IMPROVEMENTS ===== */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+.navbar nav a {
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+    color: #405a36;
+    font-weight: 700;
+}
+
+.action-placeholder {
+    scroll-margin-top: 90px;
+}
+
+.section-heading {
+    scroll-margin-top: 90px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #9a7548;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .navbar nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .navbar nav a {
+        font-size: 13px;
+    }
+}
