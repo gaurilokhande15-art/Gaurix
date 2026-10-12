@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROPLAND | Farmer Inventory</title>
+    <link rel="stylesheet" href="css/farmer-inventory.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="farmer-dashboard.html" class="brand">CROPLAND<span>.</span></a>
+
+    <nav>
+        <a href="farmer-dashboard.html">Dashboard</a>
+        <a href="farmaland.html">Products</a>
+        <a href="my-orders.html">My Orders</a>
+        <a href="plan-next-crop.html">Plan Next Crop</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="page-heading">
+        <div>
+            <p class="eyebrow">MANAGE YOUR FARM PRODUCTS</p>
+            <h1>Product Inventory</h1>
+            <p>Manage your listed crops, quantities, prices and availability.</p>
+        </div>
+
+        <a href="farmer-dashboard.html" class="back-btn">← Dashboard</a>
+    </section>
+
+    <div class="demo-notice">
+        <span>ℹ️</span>
+        <p><strong>Frontend demo:</strong> Inventory changes are stored in this browser only. They do not automatically update your existing product listing or other devices.</p>
+    </div>
+
+    <!-- SUMMARY -->
+    <section class="stats-grid">
+        <article class="stat-card">
+            <span>Total Products</span>
+            <h2 id="totalProducts">0</h2>
+            <p>Listed crops</p>
+        </article>
+
+        <article class="stat-card">
+            <span>Total Stock</span>
+            <h2 id="totalStock">0 kg</h2>
+            <p>Combined quantity in kilograms</p>
+        </article>
+
+        <article class="stat-card">
+            <span>Available Products</span>
+            <h2 id="availableProducts">0</h2>
+            <p>Products marked available</p>
+        </article>
+
+        <article class="stat-card">
+            <span>Low Stock</span>
+            <h2 id="lowStock">0</h2>
+            <p>Products with 20 kg or less</p>
+        </article>
+    </section>
+
+    <!-- ADD / EDIT PRODUCT -->
+    <section class="panel" id="productFormPanel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">INVENTORY DETAILS</p>
+                <h2 id="formTitle">Add a Product</h2>
+                <p>Add a crop or update one of your existing inventory entries.</p>
+            </div>
+        </div>
+
+        <form id="inventoryForm">
+            <input type="hidden" id="productId">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="productName">Crop Name *</label>
+                    <input type="text" id="productName" maxlength="100"
+                           placeholder="e.g. Wheat" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category *</label>
+                    <select id="category" required>
+                        <option value="">Select category</option>
+                        <option value="Grains">Grains</option>
+                        <option value="Vegetables">Vegetables</option>
+                        <option value="Fruits">Fruits</option>
+                        <option value="Pulses">Pulses</option>
+                        <option value="Spices">Spices</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Available Quantity (kg) *</label>
+                    <input type="number" id="quantity" min="0" max="100000000"
+                           step="0.01" placeholder="e.g. 250" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price per kg (₹) *</label>
+                    <input type="number" id="price" min="0.01" max="100000000"
+                           step="0.01" placeholder="e.g. 35" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Farm Location *</label>
+                    <input type="text" id="location" maxlength="150"
+                           placeholder="Village, District" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="harvestDate">Harvest Date</label>
+                    <input type="date" id="harvestDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="availability">Availability *</label>
+                    <select id="availability" required>
+                        <option value="Available">Available</option>
+                        <option value="Unavailable">Unavailable</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quality">Product Quality</label>
+                    <select id="quality">
+                        <option value="Standard">Standard</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Organic">Organic</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="description">Description</label>
+                    <textarea id="description" rows="3" maxlength="500"
+                              placeholder="Describe your crop, freshness or other relevant details."></textarea>
+                </div>
+
+            </div>
+
+            <div id="formMessage" class="message" role="status" aria-live="polite"></div>
+
+            <div class="form-actions">
+                <button type="button" id="cancelEditBtn" class="btn btn-secondary" hidden>
+                    Cancel Edit
+                </button>
+                <button type="reset" id="clearFormBtn" class="btn btn-secondary">
+                    Clear Form
+                </button>
+                <button type="submit" class="btn btn-primary" id="saveProductBtn">
+                    Add Product
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- INVENTORY LIST -->
+    <section class="panel">
+        <div class="section-heading inventory-heading">
+            <div>
+                <p class="eyebrow">YOUR PRODUCTS</p>
+                <h2>Inventory List</h2>
+            </div>
+            <span class="item-count" id="inventoryCount">0 products</span>
+        </div>
+
+        <div class="filters">
+            <input type="search" id="inventorySearch"
+                   placeholder="Search crop or location..."
+                   aria-label="Search inventory">
+
+            <select id="categoryFilter" aria-label="Filter by category">
+                <option value="all">All Categories</option>
+                <option value="Grains">Grains</option>
+                <option value="Vegetables">Vegetables</option>
+                <option value="Fruits">Fruits</option>
+                <option value="Pulses">Pulses</option>
+                <option value="Spices">Spices</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <select id="availabilityFilter" aria-label="Filter by availability">
+                <option value="all">All Availability</option>
+                <option value="Available">Available</option>
+                <option value="Unavailable">Unavailable</option>
+            </select>
+        </div>
+
+        <div id="inventoryGrid" class="inventory-grid"></div>
+
+        <div id="emptyState" class="empty-state" hidden>
+            <div>🌾</div>
+            <h3>No products found</h3>
+            <p>Add a product or change your search filters.</p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 CROPLAND. Connecting Farmers Directly to Buyers.</p>
+</footer>
+
+<script src="js/farmer-inventory.js"></script>
+</body>
+</html>

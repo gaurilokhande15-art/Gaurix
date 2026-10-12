@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CROPLAND | Route Optimization</title>
+
+    <link rel="stylesheet" href="css/route-optimization.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <a href="farmaland.html" class="logo">🌾 CROPLAND</a>
+
+    <nav>
+        <a href="farmaland.html">Home</a>
+        <a href="farmer-dashboard.html">Dashboard</a>
+        <a href="plan-next-crop.html">Plan Next Crop</a>
+        <a href="ai-chatbot.html">AI Assistant</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <span class="tag">SMART AGRICULTURE</span>
+        <h1>AI Route Optimization 🚚</h1>
+
+        <p>
+            Plan your delivery journey, organize trader stops,
+            and explore estimated distance, delivery time and fuel cost.
+        </p>
+    </section>
+
+    <section class="route-layout">
+
+        <div class="form-card">
+
+            <h2>Plan Your Delivery</h2>
+
+            <form id="routeForm">
+
+                <label for="startLocation">Starting Location</label>
+                <input
+                    type="text"
+                    id="startLocation"
+                    placeholder="e.g. Nanded"
+                    required
+                >
+
+                <div class="section-heading">
+                    <h3>Delivery Stops</h3>
+                    <button type="button" id="addStopBtn" class="secondary-btn">
+                        + Add Stop
+                    </button>
+                </div>
+
+                <div id="stopsContainer">
+
+                    <div class="stop-row">
+                        <input
+                            type="text"
+                            class="stop-input"
+                            placeholder="Trader 1 location"
+                            required
+                        >
+                    </div>
+
+                    <div class="stop-row">
+                        <input
+                            type="text"
+                            class="stop-input"
+                            placeholder="Trader 2 location"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <label for="cropQuantity">Total Crop Quantity (kg)</label>
+                <input
+                    type="number"
+                    id="cropQuantity"
+                    min="1"
+                    placeholder="e.g. 500"
+                    required
+                >
+
+                <label for="vehicleCapacity">Vehicle Capacity (kg)</label>
+                <select id="vehicleCapacity" required>
+                    <option value="500">500 kg mini vehicle</option>
+                    <option value="1000">1000 kg vehicle</option>
+                    <option value="2000">2000 kg vehicle</option>
+                    <option value="5000">5000 kg truck</option>
+                </select>
+
+                <label for="fuelPrice">Fuel Price (₹ per litre)</label>
+                <input
+                    type="number"
+                    id="fuelPrice"
+                    min="1"
+                    value="100"
+                    required
+                >
+
+                <button type="submit" class="primary-btn">
+                    Optimize My Route →
+                </button>
+
+                <p id="routeMessage" class="message" aria-live="polite"></p>
+
+            </form>
+        </div>
+
+        <div class="results-card">
+
+            <h2>Your Delivery Plan</h2>
+
+            <div id="emptyState" class="empty-state">
+                <div class="truck-icon">🚛</div>
+                <h3>Ready to plan your route?</h3>
+                <p>
+                    Enter your starting location and trader stops
+                    to generate a demo delivery plan.
+                </p>
+            </div>
+
+            <div id="routeResults" hidden>
+
+                <div class="stats-grid">
+
+                    <div class="stat-box">
+                        <span>Estimated Distance</span>
+                        <strong id="distanceResult">--</strong>
+                    </div>
+
+                    <div class="stat-box">
+                        <span>Estimated Time</span>
+                        <strong id="timeResult">--</strong>
+                    </div>
+
+                    <div class="stat-box">
+                        <span>Estimated Fuel Cost</span>
+                        <strong id="fuelResult">--</strong>
+                    </div>
+
+                    <div class="stat-box">
+                        <span>Vehicles Required</span>
+                        <strong id="vehicleResult">--</strong>
+                    </div>
+
+                </div>
+
+                <h3 class="route-title">Suggested Delivery Sequence</h3>
+
+                <div id="routeSequence" class="route-sequence"></div>
+
+                <div class="map-placeholder">
+                    <span>📍</span>
+                    <h3>Route Preview</h3>
+                    <p>
+                        This area is a visual placeholder.
+                        A real map and geographic route will be
+                        connected during backend integration.
+                    </p>
+                </div>
+
+                <p class="demo-note">
+                    Demo estimates only — not actual map distances,
+                    traffic conditions or live AI optimization.
+                </p>
+
+                <button type="button" id="resetBtn" class="secondary-btn">
+                    Plan Another Route
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 GAURIX | Smarter Agriculture, Better Connections</p>
+</footer>
+
+<script src="js/route-optimization.js"></script>
+
+</body>
+</html>

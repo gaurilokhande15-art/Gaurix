@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROPLAND | Help & Support</title>
+    <link rel="stylesheet" href="css/help-support.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="farmer-dashboard.html" class="brand">CROPLAND<span>.</span></a>
+
+    <nav>
+        <a href="farmer-dashboard.html">Dashboard</a>
+        <a href="plan-next-crop.html">Plan Next Crop</a>
+        <a href="ai-chatbot.html">AI Assistant</a>
+        <a href="notifications.html">Notifications</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <p class="eyebrow">WE ARE HERE TO HELP</p>
+        <h1>How can we help you?</h1>
+        <p>Find answers to common questions about CROPLAND.</p>
+
+        <div class="search-box">
+            <input
+                type="search"
+                id="faqSearch"
+                placeholder="Search questions... e.g. orders, crops, payments"
+                aria-label="Search frequently asked questions"
+            >
+            <button type="button" id="searchBtn">Search</button>
+        </div>
+    </section>
+
+    <section class="support-options">
+
+        <a href="ai-chatbot.html" class="support-card">
+            <div class="icon">🤖</div>
+            <h3>AI Farming Assistant</h3>
+            <p>Ask farming-related questions and get demo guidance.</p>
+            <span>Open AI Assistant →</span>
+        </a>
+
+        <a href="my-orders.html" class="support-card">
+            <div class="icon">📦</div>
+            <h3>Order Help</h3>
+            <p>View your orders and check their current status.</p>
+            <span>View My Orders →</span>
+        </a>
+
+        <a href="farmer-profile.html" class="support-card">
+            <div class="icon">👤</div>
+            <h3>Account Help</h3>
+            <p>Manage your profile and farming information.</p>
+            <span>Open My Profile →</span>
+        </a>
+
+    </section>
+
+    <section class="faq-section">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">QUICK ANSWERS</p>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <span class="faq-count" id="faqCount">8 questions</span>
+        </div>
+
+        <div class="faq-list" id="faqList">
+
+            <article class="faq-item" data-category="account">
+                <button class="faq-question" aria-expanded="false">
+                    <span>How can I create or update my farmer profile?</span>
+                    <span class="plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    Open My Profile from your dashboard. Enter your name,
+                    contact information, farm location and farming details.
+                    Select Save Profile to save your changes.
+                </div>
+            </article>
+
+            <article class="faq-item" data-category="crops">
+                <button class="faq-question" aria-expanded="false">
+                    <span>How do I plan my next crop?</span>
+                    <span class="plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    Open Plan Next Crop from the dashboard. Enter your planned
+                    crop, expected quantity and harvest date, then follow the
+                    available instructions on the page.
+                </div>
+            </article>
+
+            <article class="faq-item" data-category="crops">
+                <button class="faq-question" aria-expanded="false">
+                    <span>How can I register a crop for sale?</span>
+                    <span class="plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    Open Plan Next Crop and find the crop registration section.
+                    Add the crop name, available quantity, harvest date and
+                    location. Follow the page's instructions to save the details.
+                </div>
+            </article>
+
+            <article class="faq-item" data-category="orders">
+                <button class="faq-question" aria-expanded="false">
+                    <span>Where can I check my orders?</span>
+                    <span class="plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    Open My Orders from your dashboard. You can view the order
+                    information and the status available for each order.
+                </div>
+            </article>
+
+            <article class="faq-item" data-category="orders">
+                <button class="faq-question" aria-expanded="false">
+                    <span>What do the different order statuses mean?</span>
+                    <span class="plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    Pending means the order is awaiting a response.
+                    Accepted means it has been accepted.
+                    Ready for Delivery means it is ready for the delivery stage.
+                    Delivered means the order has been marked as delivered.
+                    Actual updates depend on the connected order system.
+                </div>
+            </article>
+
+            <article class="faq-item" data-category="traders">
+                <button class="faq-question" aria-expanded="false">
+                    <span>How can I connect with traders?</span>
+                    <span class="plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    Open Plan Next Crop and look for the trader discovery section.
+                    You can explore the available demo trader cards and use the
+                    interest options provided on the page.
+                </div>
+            </article>
+
+            <article class="faq-item" data-category="technology">
+                <button class="faq-question" aria-expanded="false">
+                    <span>How does the AI Farming Assistant work?</span>
+                    <span class="plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    Open AI Farming Assistant to explore the current demo.
+                    Its responses are keyword-based for now; a real AI service
+                    will require backend integration. Always verify important
+                    agricultural advice with a qualified local expert.
+                </div>
+            </article>
+
+            <article class="faq-item" data-category="account">
+                <button class="faq-question" aria-expanded="false">
+                    <span>Will my saved information appear on another device?</span>
+                    <span class="plus">+</span>
+                </button>
+                <div class="faq-answer">
+                    Not yet. Some current frontend features store information
+                    in your browser's local storage. Data will not automatically
+                    synchronize between devices until the backend and account
+                    authentication are connected.
+                </div>
+            </article>
+
+        </div>
+
+        <div id="noResults" class="no-results" hidden>
+            <div>🔎</div>
+            <h3>No matching questions found</h3>
+            <p>Try another search term.</p>
+            <button type="button" id="clearSearch">Clear Search</button>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div>
+            <p class="eyebrow">NEED MORE HELP?</p>
+            <h2>Still have a question?</h2>
+            <p>
+                You can explore the AI Farming Assistant or return to your
+                dashboard to continue using CROPLAND.
+            </p>
+        </div>
+
+        <div class="contact-actions">
+            <a href="ai-chatbot.html" class="btn btn-primary">
+                Ask AI Assistant
+            </a>
+            <a href="farmer-dashboard.html" class="btn btn-secondary">
+                Back to Dashboard
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 CROPLAND. Connecting Farmers Directly to Buyers.</p>
+</footer>
+
+<script src="js/help-support.js"></script>
+</body>
+</html>

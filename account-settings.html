@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CROPLAND - Account Settings</title>
+
+    <link rel="stylesheet" href="css/account-settings.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="farmaland.html" class="brand">🌾 CROPLAND</a>
+
+        <a href="farmer-dashboard.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+    </header>
+
+    <main class="container">
+
+        <section class="page-heading">
+            <p class="eyebrow">YOUR ACCOUNT</p>
+            <h1>Account Settings</h1>
+            <p>Manage your preferences, notifications and account security.</p>
+        </section>
+
+        <div id="statusMessage" class="status-message" role="status"
+            aria-live="polite" hidden></div>
+
+        <!-- PROFILE PREFERENCES -->
+        <section class="settings-card">
+
+            <div class="section-heading">
+                <div class="icon-box">👤</div>
+
+                <div>
+                    <h2>Profile Preferences</h2>
+                    <p>Manage your basic account information.</p>
+                </div>
+            </div>
+
+            <form id="profileForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName"
+                            placeholder="Enter your full name"
+                            maxlength="80" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email"
+                            placeholder="Enter your email"
+                            maxlength="254" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="language">Preferred Language</label>
+
+                        <select id="language">
+                            <option value="English">English</option>
+                            <option value="Marathi">मराठी (Marathi)</option>
+                            <option value="Hindi">हिन्दी (Hindi)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accountType">Account Type</label>
+
+                        <select id="accountType">
+                            <option value="Farmer">Farmer</option>
+                            <option value="Shopkeeper">Shopkeeper</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    Save Profile Preferences
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- NOTIFICATION SETTINGS -->
+        <section class="settings-card">
+
+            <div class="section-heading">
+                <div class="icon-box">🔔</div>
+
+                <div>
+                    <h2>Notification Settings</h2>
+                    <p>Choose which updates you want to receive.</p>
+                </div>
+            </div>
+
+            <form id="notificationForm">
+
+                <label class="setting-row">
+                    <div>
+                        <strong>Order Updates</strong>
+                        <p>Receive updates about orders and deliveries.</p>
+                    </div>
+
+                    <input type="checkbox" id="orderNotifications">
+                </label>
+
+                <label class="setting-row">
+                    <div>
+                        <strong>Messages</strong>
+                        <p>Get notified when someone messages you.</p>
+                    </div>
+
+                    <input type="checkbox" id="messageNotifications">
+                </label>
+
+                <label class="setting-row">
+                    <div>
+                        <strong>Market Updates</strong>
+                        <p>Receive relevant market and crop updates.</p>
+                    </div>
+
+                    <input type="checkbox" id="marketNotifications">
+                </label>
+
+                <label class="setting-row">
+                    <div>
+                        <strong>Offers and Announcements</strong>
+                        <p>Receive platform announcements and offers.</p>
+                    </div>
+
+                    <input type="checkbox" id="offerNotifications">
+                </label>
+
+                <button type="submit" class="primary-btn">
+                    Save Notification Settings
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- PRIVACY SETTINGS -->
+        <section class="settings-card">
+
+            <div class="section-heading">
+                <div class="icon-box">🛡️</div>
+
+                <div>
+                    <h2>Privacy Settings</h2>
+                    <p>Manage your demo profile visibility preferences.</p>
+                </div>
+            </div>
+
+            <form id="privacyForm">
+
+                <label class="setting-row">
+                    <div>
+                        <strong>Show Profile to Other Users</strong>
+                        <p>Allow other platform users to view your profile.</p>
+                    </div>
+
+                    <input type="checkbox" id="profileVisibility">
+                </label>
+
+                <label class="setting-row">
+                    <div>
+                        <strong>Show Contact Information</strong>
+                        <p>Allow your contact information to be visible.</p>
+                    </div>
+
+                    <input type="checkbox" id="contactVisibility">
+                </label>
+
+                <button type="submit" class="primary-btn">
+                    Save Privacy Settings
+                </button>
+
+            </form>
+
+            <p class="info-note">
+                These are prototype preferences only. They do not control
+                the visibility of data stored on a server.
+            </p>
+
+        </section>
+
+        <!-- CHANGE PASSWORD -->
+        <section class="settings-card">
+
+            <div class="section-heading">
+                <div class="icon-box">🔐</div>
+
+                <div>
+                    <h2>Change Password</h2>
+                    <p>Demo form for future account security integration.</p>
+                </div>
+            </div>
+
+            <form id="passwordForm">
+
+                <div class="form-group password-field">
+                    <label for="currentPassword">Current Password</label>
+                    <input type="password" id="currentPassword"
+                        autocomplete="current-password"
+                        required>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group password-field">
+                        <label for="newPassword">New Password</label>
+
+                        <input type="password" id="newPassword"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required>
+
+                        <small>Use at least 8 characters.</small>
+                    </div>
+
+                    <div class="form-group password-field">
+                        <label for="confirmPassword">Confirm New Password</label>
+
+                        <input type="password" id="confirmPassword"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="primary-btn">
+                    Validate Password Change
+                </button>
+
+            </form>
+
+            <p class="info-note">
+                Demo only: this form does not change your real password.
+                Never store actual passwords in localStorage.
+            </p>
+
+        </section>
+
+        <!-- RESET SETTINGS -->
+        <section class="danger-card">
+
+            <div>
+                <h2>Reset Preferences</h2>
+                <p>Restore the settings on this page to their defaults.</p>
+            </div>
+
+            <button type="button" id="resetSettings" class="danger-btn">
+                Reset Settings
+            </button>
+
+        </section>
+
+        <p class="footer-note">
+            CROPLAND · Connecting Farmers Directly with Buyers 🌾
+        </p>
+
+    </main>
+
+    <script src="js/account-settings.js"></script>
+
+</body>
+</html>

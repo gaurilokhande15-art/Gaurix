@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROPLAND - Messages</title>
+    <link rel="stylesheet" href="css/messages.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="farmer-dashboard.html" class="brand">
+            <span class="brand-icon">🌾</span>
+            <span>
+                <strong>CROPLAND</strong>
+                <small>Direct Farmer–Buyer Communication</small>
+            </span>
+        </a>
+
+        <a href="farmer-dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+    </header>
+
+    <main class="page-container">
+
+        <section class="page-heading">
+            <div>
+                <p class="eyebrow">STAY CONNECTED</p>
+                <h1>Messages 💬</h1>
+                <p>Connect directly with farmers and shopkeepers.</p>
+            </div>
+
+            <div class="online-badge">
+                <span></span> Direct Communication
+            </div>
+        </section>
+
+        <section class="chat-layout">
+
+            <!-- CONVERSATION LIST -->
+            <aside class="conversation-panel">
+
+                <div class="conversation-heading">
+                    <h2>Conversations</h2>
+                    <button id="newChatBtn" class="icon-btn"
+                        type="button" title="New conversation">＋</button>
+                </div>
+
+                <div class="search-box">
+                    <input type="search" id="searchConversations"
+                        placeholder="Search conversations...">
+                </div>
+
+                <div class="chat-filters">
+                    <button class="filter-btn active"
+                        data-filter="all" type="button">All</button>
+                    <button class="filter-btn"
+                        data-filter="unread" type="button">Unread</button>
+                </div>
+
+                <div id="conversationList" class="conversation-list"></div>
+
+                <div id="emptyConversations" class="empty-state hidden">
+                    <span>💬</span>
+                    <p>No conversations found.</p>
+                </div>
+
+            </aside>
+
+            <!-- CHAT WINDOW -->
+            <section class="chat-panel">
+
+                <div id="chatPlaceholder" class="chat-placeholder">
+                    <div class="placeholder-icon">💬</div>
+                    <h2>Your conversations, all in one place</h2>
+                    <p>Select a conversation or start a new chat.</p>
+                    <button type="button" id="startChatBtn"
+                        class="primary-btn">＋ Start a Conversation</button>
+                </div>
+
+                <div id="activeChat" class="active-chat hidden">
+
+                    <div class="chat-header">
+
+                        <div class="person-avatar" id="activeAvatar">F</div>
+
+                        <div class="person-info">
+                            <h2 id="activeName">Contact Name</h2>
+                            <p id="activeRole">Farmer / Shopkeeper</p>
+                        </div>
+
+                        <button type="button" id="chatInfoBtn"
+                            class="icon-btn" title="Contact details">ⓘ</button>
+
+                    </div>
+
+                    <div id="productContext" class="product-context hidden">
+                        <span>🛒</span>
+                        <div>
+                            <small>Product / Order</small>
+                            <strong id="contextText"></strong>
+                        </div>
+                    </div>
+
+                    <div id="messageList" class="message-list"
+                        aria-live="polite"></div>
+
+                    <div id="typingIndicator" class="typing-indicator hidden">
+                        Demo: contact is not connected to a live messaging service.
+                    </div>
+
+                    <form id="messageForm" class="message-form">
+
+                        <textarea id="messageInput"
+                            placeholder="Write a message..."
+                            rows="1" maxlength="2000"
+                            aria-label="Write a message" required></textarea>
+
+                        <button type="submit" class="send-btn"
+                            aria-label="Send message">➤</button>
+
+                    </form>
+
+                    <p class="chat-footnote">
+                        Demo mode: messages are saved in this browser only.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+        <!-- NEW CHAT MODAL -->
+        <div id="newChatModal" class="modal hidden">
+
+            <div class="modal-card">
+
+                <div class="modal-heading">
+                    <div>
+                        <h2>Start a Conversation</h2>
+                        <p>Enter the contact details to create a chat.</p>
+                    </div>
+
+                    <button type="button" id="closeModalBtn"
+                        class="icon-btn" aria-label="Close">✕</button>
+                </div>
+
+                <form id="newChatForm">
+
+                    <div class="form-group">
+                        <label for="contactName">Name *</label>
+                        <input type="text" id="contactName"
+                            placeholder="Farmer or shopkeeper name"
+                            maxlength="80" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactRole">Contact Type *</label>
+                        <select id="contactRole" required>
+                            <option value="Shopkeeper">Shopkeeper</option>
+                            <option value="Farmer">Farmer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactLocation">Location</label>
+                        <input type="text" id="contactLocation"
+                            placeholder="Village / City"
+                            maxlength="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactProduct">Product / Order (optional)</label>
+                        <input type="text" id="contactProduct"
+                            placeholder="e.g. Tomato order"
+                            maxlength="150">
+                    </div>
+
+                    <div id="modalError" class="modal-error hidden"></div>
+
+                    <button type="submit" class="primary-btn full-btn">
+                        Create Conversation
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- CONTACT INFORMATION MODAL -->
+        <div id="infoModal" class="modal hidden">
+
+            <div class="modal-card">
+
+                <div class="modal-heading">
+                    <h2>Contact Information</h2>
+                    <button type="button" id="closeInfoBtn"
+                        class="icon-btn" aria-label="Close">✕</button>
+                </div>
+
+                <div class="contact-info-content">
+                    <div class="person-avatar large" id="infoAvatar">F</div>
+                    <h3 id="infoName">Contact Name</h3>
+                    <p id="infoRole">Contact Role</p>
+                    <p id="infoLocation">Location not provided</p>
+                    <p id="infoProduct">No product linked</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 CROPLAND | Connecting Farmers Directly with Buyers</p>
+    </footer>
+
+    <script src="js/messages.js"></script>
+
+</body>
+</html>

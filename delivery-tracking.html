@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROPLAND | Delivery Tracking</title>
+    <link rel="stylesheet" href="css/delivery-tracking.css">
+</head>
+<body>
+
+<header class="topbar">
+    <a href="farmaland.html" class="logo">🌾 CROPLAND</a>
+
+    <nav>
+        <a href="farmer-dashboard.html">Dashboard</a>
+        <a href="my-orders.html">My Orders</a>
+        <a href="messages.html">Messages</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="page-heading">
+        <span class="eyebrow">ORDER MANAGEMENT</span>
+        <h1>Delivery Tracking</h1>
+        <p>Track your order progress and view delivery information.</p>
+
+        <div class="demo-notice">
+            ⚠️ Demo mode: Delivery details below are sample data, not live tracking.
+        </div>
+    </section>
+
+    <section class="stats-grid">
+        <article class="stat-card">
+            <span>📦</span>
+            <p>Total Orders</p>
+            <h2 id="totalOrders">0</h2>
+        </article>
+
+        <article class="stat-card">
+            <span>🚚</span>
+            <p>In Transit</p>
+            <h2 id="transitOrders">0</h2>
+        </article>
+
+        <article class="stat-card">
+            <span>✅</span>
+            <p>Delivered</p>
+            <h2 id="deliveredOrders">0</h2>
+        </article>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">FIND YOUR ORDER</span>
+                <h2>Track an Order</h2>
+            </div>
+        </div>
+
+        <form id="trackForm" class="track-form">
+            <div class="field">
+                <label for="orderSearch">Order ID</label>
+                <input
+                    type="search"
+                    id="orderSearch"
+                    placeholder="e.g. CRP1001"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="primary-btn">Track Order →</button>
+            <button type="button" id="showAllBtn" class="secondary-btn">
+                Show All Orders
+            </button>
+        </form>
+
+        <p id="searchMessage" class="message" role="status"></p>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">DELIVERY OVERVIEW</span>
+                <h2>Your Orders</h2>
+            </div>
+
+            <div class="field filter-field">
+                <label for="statusFilter">Filter by status</label>
+                <select id="statusFilter">
+                    <option value="all">All Orders</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="packed">Packed</option>
+                    <option value="transit">In Transit</option>
+                    <option value="delivered">Delivered</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="orderList" class="order-list"></div>
+
+        <p id="emptyOrders" class="empty-message" hidden>
+            No orders found for this selection.
+        </p>
+    </section>
+
+    <section class="panel details-panel" id="trackingDetails" hidden>
+        <div class="section-heading">
+            <span class="eyebrow">ORDER DETAILS</span>
+            <h2 id="detailTitle">Tracking Information</h2>
+            <p id="detailSubtitle"></p>
+        </div>
+
+        <div class="detail-grid">
+            <div class="detail-box">
+                <span>Order ID</span>
+                <strong id="detailOrderId">—</strong>
+            </div>
+
+            <div class="detail-box">
+                <span>Crop</span>
+                <strong id="detailCrop">—</strong>
+            </div>
+
+            <div class="detail-box">
+                <span>Quantity</span>
+                <strong id="detailQuantity">—</strong>
+            </div>
+
+            <div class="detail-box">
+                <span>Estimated Delivery</span>
+                <strong id="detailDate">—</strong>
+            </div>
+
+            <div class="detail-box">
+                <span>Farmer</span>
+                <strong id="detailFarmer">—</strong>
+            </div>
+
+            <div class="detail-box">
+                <span>Shopkeeper</span>
+                <strong id="detailShopkeeper">—</strong>
+            </div>
+        </div>
+
+        <div class="timeline-section">
+            <h3>Delivery Progress</h3>
+            <div id="timeline" class="timeline"></div>
+        </div>
+
+        <div class="delivery-note" id="deliveryNote"></div>
+    </section>
+
+    <div class="back-row">
+        <a href="farmer-dashboard.html" class="back-btn">← Back to Dashboard</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 CROPLAND | Delivery Tracking</p>
+</footer>
+
+<script src="js/delivery-tracking.js"></script>
+</body>
+</html>

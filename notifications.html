@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROPLAND | Notifications</title>
+    <link rel="stylesheet" href="css/notifications.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="farmaland.html" class="logo">🌾 CROPLAND</a>
+
+    <nav>
+        <a href="farmaland.html">Home</a>
+        <a href="farmer-dashboard.html">Dashboard</a>
+        <a href="plan-next-crop.html">Plan Next Crop</a>
+        <a href="ai-chatbot.html">AI Assistant</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="page-heading">
+        <div>
+            <span class="eyebrow">STAY UPDATED</span>
+            <h1>Notifications 🔔</h1>
+            <p>Keep track of your orders, crops and trader activities.</p>
+        </div>
+
+        <div class="heading-actions">
+            <button id="markAllReadBtn" class="secondary-btn">
+                ✓ Mark All as Read
+            </button>
+
+            <button id="clearAllBtn" class="danger-btn">
+                Clear All
+            </button>
+        </div>
+    </section>
+
+    <section class="summary-grid">
+
+        <article class="summary-card">
+            <span class="summary-icon">🔔</span>
+            <div>
+                <p>Total Notifications</p>
+                <h2 id="totalCount">0</h2>
+            </div>
+        </article>
+
+        <article class="summary-card">
+            <span class="summary-icon">📩</span>
+            <div>
+                <p>Unread</p>
+                <h2 id="unreadCount">0</h2>
+            </div>
+        </article>
+
+        <article class="summary-card">
+            <span class="summary-icon">📦</span>
+            <div>
+                <p>Order Updates</p>
+                <h2 id="orderCount">0</h2>
+            </div>
+        </article>
+
+    </section>
+
+    <section class="notification-panel">
+
+        <div class="panel-heading">
+            <h2>Recent Activity</h2>
+
+            <select id="notificationFilter" aria-label="Filter notifications">
+                <option value="all">All Notifications</option>
+                <option value="unread">Unread Only</option>
+                <option value="order">Order Updates</option>
+                <option value="crop">Crop Updates</option>
+                <option value="trader">Trader Updates</option>
+            </select>
+        </div>
+
+        <div id="notificationList"></div>
+
+        <div id="emptyState" class="empty-state" hidden>
+            <div>📭</div>
+            <h3>No notifications found</h3>
+            <p>New updates will appear here.</p>
+        </div>
+
+    </section>
+
+    <p class="demo-note">
+        Demo notifications are displayed for frontend demonstration.
+        Live updates will be connected during backend integration.
+    </p>
+
+</main>
+
+<footer>
+    © 2026 CROPLAND | Connecting Farmers Directly to Buyers
+</footer>
+
+<script src="js/notifications.js"></script>
+
+</body>
+</html>

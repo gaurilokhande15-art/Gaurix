@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROPLAND - Ratings & Reviews</title>
+    <link rel="stylesheet" href="css/reviews.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="farmer-dashboard.html" class="brand">
+            <span class="brand-icon">🌾</span>
+            <span>
+                <strong>CROPLAND</strong>
+                <small>Ratings & Reviews</small>
+            </span>
+        </a>
+
+        <a href="farmer-dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+    </header>
+
+    <main class="container">
+
+        <section class="page-heading">
+            <div>
+                <p class="eyebrow">TRUST • QUALITY • TRANSPARENCY</p>
+                <h1>Ratings & Reviews ⭐</h1>
+                <p>Discover trusted sellers and share your experience.</p>
+            </div>
+
+            <button type="button" id="writeReviewBtn" class="primary-btn">
+                ✍️ Write a Review
+            </button>
+        </section>
+
+        <!-- RATING SUMMARY -->
+        <section class="rating-summary">
+
+            <div class="rating-overview">
+                <h2 id="averageRating">0.0</h2>
+                <div id="averageStars" class="stars">☆☆☆☆☆</div>
+                <p id="totalReviews">0 reviews</p>
+            </div>
+
+            <div class="rating-breakdown" id="ratingBreakdown"></div>
+
+        </section>
+
+        <!-- FILTERS -->
+        <section class="filter-panel">
+
+            <div class="search-field">
+                <label for="reviewSearch">Search reviews</label>
+                <input type="search" id="reviewSearch"
+                    placeholder="Search product, seller or review...">
+            </div>
+
+            <div class="filter-field">
+                <label for="ratingFilter">Rating</label>
+                <select id="ratingFilter">
+                    <option value="all">All ratings</option>
+                    <option value="5">5 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="2">2 stars</option>
+                    <option value="1">1 star</option>
+                </select>
+            </div>
+
+            <div class="filter-field">
+                <label for="sortReviews">Sort by</label>
+                <select id="sortReviews">
+                    <option value="recent">Most recent</option>
+                    <option value="helpful">Most helpful</option>
+                    <option value="highest">Highest rating</option>
+                    <option value="lowest">Lowest rating</option>
+                </select>
+            </div>
+
+        </section>
+
+        <!-- REVIEW LIST -->
+        <section class="reviews-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Customer Experiences</h2>
+                    <p>Reviews currently available in this demo.</p>
+                </div>
+            </div>
+
+            <div id="reviewsList" class="reviews-list"></div>
+
+            <div id="emptyReviews" class="empty-state hidden">
+                <span>📝</span>
+                <h3>No reviews found</h3>
+                <p>Try another search or write the first review.</p>
+            </div>
+
+        </section>
+
+        <p class="demo-notice">
+            ℹ️ Demo mode: reviews are stored in this browser.
+            They are not verified purchases or live customer reviews.
+        </p>
+
+    </main>
+
+    <!-- WRITE REVIEW MODAL -->
+    <div id="reviewModal" class="modal hidden">
+
+        <div class="modal-card">
+
+            <div class="modal-heading">
+                <div>
+                    <h2>Write a Review</h2>
+                    <p>Share an honest experience with the CROPLAND community.</p>
+                </div>
+
+                <button type="button" id="closeModalBtn"
+                    class="icon-btn" aria-label="Close">✕</button>
+            </div>
+
+            <form id="reviewForm">
+
+                <div class="form-group">
+                    <label for="reviewerName">Your Name *</label>
+                    <input type="text" id="reviewerName"
+                        maxlength="80" required
+                        placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="sellerName">Farmer / Shopkeeper Name *</label>
+                    <input type="text" id="sellerName"
+                        maxlength="100" required
+                        placeholder="Who are you reviewing?">
+                </div>
+
+                <div class="form-group">
+                    <label for="productName">Product / Service *</label>
+                    <input type="text" id="productName"
+                        maxlength="120" required
+                        placeholder="e.g. Fresh Tomatoes">
+                </div>
+
+                <div class="form-group">
+                    <label>Your Rating *</label>
+
+                    <div class="star-picker" id="starPicker"
+                        role="group" aria-label="Choose a rating">
+
+                        <button type="button" data-rating="1"
+                            aria-label="1 star">☆</button>
+                        <button type="button" data-rating="2"
+                            aria-label="2 stars">☆</button>
+                        <button type="button" data-rating="3"
+                            aria-label="3 stars">☆</button>
+                        <button type="button" data-rating="4"
+                            aria-label="4 stars">☆</button>
+                        <button type="button" data-rating="5"
+                            aria-label="5 stars">☆</button>
+
+                    </div>
+
+                    <input type="hidden" id="selectedRating" value="0">
+
+                    <p id="ratingHelp" class="field-help">
+                        Select between 1 and 5 stars.
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="reviewText">Your Review *</label>
+                    <textarea id="reviewText" rows="5"
+                        maxlength="1000" required
+                        placeholder="Describe product quality, communication, delivery or service..."></textarea>
+                    <small><span id="characterCount">0</span>/1000 characters</small>
+                </div>
+
+                <div id="formError" class="form-error hidden"
+                    role="alert"></div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelReviewBtn"
+                        class="secondary-btn">Cancel</button>
+
+                    <button type="submit" class="primary-btn">
+                        Submit Review
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 CROPLAND | Connecting Farmers Directly with Buyers</p>
+    </footer>
+
+    <script src="js/reviews.js"></script>
+
+</body>
+</html>

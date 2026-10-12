@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROPLAND | AI Farming Assistant</title>
+    <link rel="stylesheet" href="css/ai-chatbot.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="farmaland.html" class="logo">🌾 CROPLAND</a>
+
+    <nav>
+        <a href="farmaland.html">Home</a>
+        <a href="farmer-dashboard.html">Dashboard</a>
+        <a href="plan-next-crop.html">Plan Next Crop</a>
+        <a href="route-optimization.html">Route Optimization</a>
+    </nav>
+</header>
+
+<main class="chatbot-page">
+
+    <section class="chatbot-intro">
+        <span class="eyebrow">YOUR SMART FARMING PARTNER</span>
+        <h1>AI Farming Assistant 🌱</h1>
+        <p>Ask questions about crops, farming practices and selling your produce.</p>
+    </section>
+
+    <section class="chatbot-container">
+
+        <aside class="chatbot-sidebar">
+            <div class="assistant-profile">
+                <div class="assistant-avatar">🌾</div>
+                <div>
+                    <h2>GAURIX Assistant</h2>
+                    <span class="assistant-status">● Demo Mode</span>
+                </div>
+            </div>
+
+            <h3>Suggested Questions</h3>
+
+            <button class="suggestion-btn" data-question="How do I choose my next crop?">
+                🌱 Next crop suggestions
+            </button>
+
+            <button class="suggestion-btn" data-question="How can I improve soil health?">
+                🌿 Soil health tips
+            </button>
+
+            <button class="suggestion-btn" data-question="How should I prepare my crops for bulk sale?">
+                📦 Preparing crops for sale
+            </button>
+
+            <button class="suggestion-btn" data-question="How can I reduce transportation costs?">
+                🚚 Reduce transport costs
+            </button>
+
+            <div class="demo-notice">
+                <strong>Demo version</strong>
+                <p>Real AI answers will be enabled after backend integration.</p>
+            </div>
+        </aside>
+
+        <div class="chat-window">
+
+            <div class="chat-header">
+                <div>
+                    <h2>Chat with your assistant</h2>
+                    <p>Ask a farming-related question to get started.</p>
+                </div>
+
+                <select id="chatLanguage" aria-label="Choose language">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="mr">Marathi</option>
+                </select>
+            </div>
+
+            <div class="chat-messages" id="chatMessages" aria-live="polite">
+                <div class="message assistant-message">
+                    <div class="message-avatar">🌾</div>
+                    <div class="message-content">
+                        <span class="message-sender">GAURIX Assistant</span>
+                        <p>Namaste! 👋 I am your farming assistant. Ask me about crop planning, soil health, selling produce or transportation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator" hidden>
+                GAURIX Assistant is preparing a demo response...
+            </div>
+
+            <form class="chat-input-area" id="chatForm">
+                <label class="visually-hidden" for="chatInput">Your message</label>
+
+                <textarea
+                    id="chatInput"
+                    rows="1"
+                    maxlength="1000"
+                    placeholder="Type your farming question..."
+                    required
+                ></textarea>
+
+                <button type="submit" id="sendMessageBtn">Send ➤</button>
+            </form>
+
+            <p class="chat-disclaimer">
+                Demo responses are for general information only, not professional agricultural advice.
+            </p>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© GAURIX | Better connections from farm to market.</p>
+</footer>
+
+<script src="js/ai-chatbot.js"></script>
+</body>
+</html>

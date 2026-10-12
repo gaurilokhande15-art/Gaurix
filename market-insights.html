@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CROPLAND | Market Insights</title>
+    <link rel="stylesheet" href="css/market-insights.css">
+</head>
+<body>
+
+<header class="topbar">
+    <a href="farmaland.html" class="logo">🌾 CROPLAND</a>
+    <nav>
+        <a href="farmer-dashboard.html">Dashboard</a>
+        <a href="plan-next-crop.html">Plan Next Crop</a>
+        <a href="my-orders.html">My Orders</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <span class="eyebrow">SMART FARMING DECISIONS</span>
+        <h1>Crop Price Trends & Market Insights</h1>
+        <p>Compare crop prices, explore market trends and make informed selling decisions.</p>
+
+        <div class="demo-notice">
+            ⚠️ Demo mode: Prices below are illustrative, not live mandi prices.
+        </div>
+    </section>
+
+    <section class="stats-grid">
+        <article class="stat-card">
+            <span>🌾</span>
+            <p>Crops Available</p>
+            <h2 id="cropCount">0</h2>
+        </article>
+
+        <article class="stat-card">
+            <span>📈</span>
+            <p>Highest Sample Price</p>
+            <h2 id="highestPrice">₹0</h2>
+            <small>Per quintal</small>
+        </article>
+
+        <article class="stat-card">
+            <span>📊</span>
+            <p>Average Sample Price</p>
+            <h2 id="averagePrice">₹0</h2>
+            <small>Per quintal</small>
+        </article>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">EXPLORE MARKETS</span>
+                <h2>Find Crop Prices</h2>
+            </div>
+        </div>
+
+        <div class="filters">
+            <div class="field">
+                <label for="cropSearch">Search crop</label>
+                <input type="search" id="cropSearch" placeholder="e.g. Tomato">
+            </div>
+
+            <div class="field">
+                <label for="categoryFilter">Category</label>
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="Vegetable">Vegetables</option>
+                    <option value="Grain">Grains</option>
+                    <option value="Fruit">Fruits</option>
+                    <option value="Pulse">Pulses</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="sortFilter">Sort by price</label>
+                <select id="sortFilter">
+                    <option value="default">Default</option>
+                    <option value="low">Lowest first</option>
+                    <option value="high">Highest first</option>
+                </select>
+            </div>
+
+            <button id="resetFilters" class="secondary-btn" type="button">
+                Reset
+            </button>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Crop</th>
+                        <th>Category</th>
+                        <th>Sample Price / Quintal</th>
+                        <th>Sample Trend</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cropTableBody"></tbody>
+            </table>
+        </div>
+
+        <p id="emptyMessage" class="empty-message" hidden>
+            No crops match your search.
+        </p>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">PRICE COMPARISON</span>
+                <h2>Compare Crop Prices</h2>
+                <p>Select a crop to see its illustrative price trend.</p>
+            </div>
+        </div>
+
+        <div class="chart-controls">
+            <div class="field">
+                <label for="chartCrop">Select crop</label>
+                <select id="chartCrop"></select>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-title">
+                <div>
+                    <h3 id="chartTitle">Crop Price Trend</h3>
+                    <p>Illustrative weekly values · ₹ per quintal</p>
+                </div>
+                <span class="chart-badge">DEMO DATA</span>
+            </div>
+
+            <div id="priceChart" class="chart" aria-label="Illustrative crop price chart"></div>
+        </div>
+
+        <p class="chart-note">
+            This chart uses example values for demonstration only.
+            Do not use it to make actual buying or selling decisions.
+        </p>
+    </section>
+
+    <section class="insight-grid">
+        <article class="insight-card">
+            <span class="insight-icon">💡</span>
+            <h3>Compare Before Selling</h3>
+            <p>Compare available prices before deciding where to sell your produce.</p>
+        </article>
+
+        <article class="insight-card">
+            <span class="insight-icon">📅</span>
+            <h3>Check Market Information</h3>
+            <p>Confirm current prices, quality requirements and transport costs with the buyer.</p>
+        </article>
+
+        <article class="insight-card">
+            <span class="insight-icon">🤝</span>
+            <h3>Connect Directly</h3>
+            <p>Use CROPLAND's available marketplace features to connect with potential buyers.</p>
+            <a href="plan-next-crop.html">Explore Crop Planning →</a>
+        </article>
+    </section>
+
+    <div class="back-row">
+        <a href="farmer-dashboard.html" class="back-btn">← Back to Dashboard</a>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 CROPLAND | Market Insights</p>
+</footer>
+
+<script src="js/market-insights.js"></script>
+</body>
+</html>

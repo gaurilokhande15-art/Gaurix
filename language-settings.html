@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CROPLAND - Language & Accessibility</title>
+
+    <link rel="stylesheet" href="css/language-settings.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <a href="farmaland.html" class="brand">🌾 CROPLAND</a>
+        <a href="farmer-dashboard.html" class="back-link">
+            ← Back to Dashboard
+        </a>
+    </header>
+
+    <main class="container">
+
+        <section class="page-heading">
+            <span class="eyebrow">PERSONALISE YOUR EXPERIENCE</span>
+            <h1>Language & Accessibility</h1>
+            <p>Choose your language and make CROPLAND comfortable to use.</p>
+        </section>
+
+        <div id="statusMessage" class="status-message" role="status"
+            aria-live="polite" hidden></div>
+
+        <!-- LANGUAGE -->
+        <section class="settings-card">
+
+            <div class="section-heading">
+                <span class="icon">🌐</span>
+                <div>
+                    <h2>Language Preferences</h2>
+                    <p>Select your preferred language.</p>
+                </div>
+            </div>
+
+            <form id="languageForm">
+
+                <label for="preferredLanguage">Preferred Language</label>
+
+                <select id="preferredLanguage">
+                    <option value="en">English</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                    <option value="mr">मराठी (Marathi)</option>
+                </select>
+
+                <p class="help-text">
+                    This selection is saved in your browser. Full website
+                    translation will be integrated separately.
+                </p>
+
+                <button type="submit" class="primary-btn">
+                    Save Language
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- TEXT SIZE -->
+        <section class="settings-card">
+
+            <div class="section-heading">
+                <span class="icon">🔠</span>
+                <div>
+                    <h2>Text Size</h2>
+                    <p>Choose a comfortable reading size.</p>
+                </div>
+            </div>
+
+            <div class="text-size-options">
+
+                <button type="button" class="size-btn"
+                    data-size="small" aria-pressed="false">
+                    <span class="size-preview small-text">A</span>
+                    <span>Small</span>
+                </button>
+
+                <button type="button" class="size-btn"
+                    data-size="medium" aria-pressed="true">
+                    <span class="size-preview medium-text">A</span>
+                    <span>Medium</span>
+                </button>
+
+                <button type="button" class="size-btn"
+                    data-size="large" aria-pressed="false">
+                    <span class="size-preview large-text">A</span>
+                    <span>Large</span>
+                </button>
+
+            </div>
+
+            <div class="preview-box">
+                <span class="preview-label">LIVE PREVIEW</span>
+                <h3>Welcome to CROPLAND</h3>
+                <p>
+                    Connect directly with farmers and buyers, explore
+                    agricultural products and manage your orders.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- ACCESSIBILITY -->
+        <section class="settings-card">
+
+            <div class="section-heading">
+                <span class="icon">♿</span>
+                <div>
+                    <h2>Accessibility Preferences</h2>
+                    <p>Adjust the display for easier reading.</p>
+                </div>
+            </div>
+
+            <label class="setting-row" for="highContrast">
+                <div>
+                    <strong>High Contrast</strong>
+                    <p>Increase contrast between text and background.</p>
+                </div>
+
+                <input type="checkbox" id="highContrast">
+            </label>
+
+            <label class="setting-row" for="reduceMotion">
+                <div>
+                    <strong>Reduce Motion</strong>
+                    <p>Reduce unnecessary interface animations.</p>
+                </div>
+
+                <input type="checkbox" id="reduceMotion">
+            </label>
+
+            <label class="setting-row" for="underlineLinks">
+                <div>
+                    <strong>Underline Links</strong>
+                    <p>Make links easier to identify.</p>
+                </div>
+
+                <input type="checkbox" id="underlineLinks">
+            </label>
+
+            <button type="button" id="saveAccessibility"
+                class="primary-btn">
+                Save Accessibility Settings
+            </button>
+
+        </section>
+
+        <section class="reset-card">
+            <div>
+                <h2>Reset Preferences</h2>
+                <p>Restore the default language and display settings.</p>
+            </div>
+
+            <button type="button" id="resetSettings" class="reset-btn">
+                Reset
+            </button>
+        </section>
+
+        <footer>
+            CROPLAND · Connecting Farmers Directly with Buyers 🌾
+        </footer>
+
+    </main>
+
+    <script src="js/language-settings.js"></script>
+
+</body>
+</html>
